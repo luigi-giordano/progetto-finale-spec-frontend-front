@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { GlobalProvider } from './context/GlobalContext';
 import Navbar from './components/Navbar';
 import Home from './pages/Home';
 import Detail from './pages/Detail';
@@ -7,16 +8,18 @@ import Compare from './pages/Compare';
 
 export default function App() {
   return (
-    <BrowserRouter>
-      <Navbar />
-      <main>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/detail/:id" element={<Detail />} />
-          <Route path="/favorites" element={<Favorites />} />
-          <Route path="/compare" element={<Compare />} />
-        </Routes>
-      </main>
-    </BrowserRouter>
+    <GlobalProvider>
+      <BrowserRouter>
+        <Navbar />
+        <main>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/detail/:id" element={<Detail />} />
+            <Route path="/favorites" element={<Favorites />} />
+            <Route path="/compare" element={<Compare />} />
+          </Routes>
+        </main>
+      </BrowserRouter>
+    </GlobalProvider>
   );
 }
