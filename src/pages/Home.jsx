@@ -1,20 +1,22 @@
 import { useState, useMemo } from 'react';
 import ProductCard from '../components/ProductCard';
 import useProducts from '../hooks/useProducts';
+import useDebounce from '../hooks/useDebounce';
 
 export default function Home() {
-    const { products, loading, error } = useProducts();
-
     const [search, setSearch] = useState('');
+    const debouncedSearch = useDebounce(search, 500);
     const [category, setCategory] = useState('');
     const [sort, setSort] = useState('title-asc');
+
+    const { products, loading, error } = useProducts(debouncedSearch, category);
 
     const filteredProducts = useMemo(() => {
         let result = [...products];
 
-        if (search.trim()) {
+        if (debouncedSearch.trim()) {
             result = result.filter(p =>
-                p.title.toLowerCase().includes(search.toLowerCase())
+                p.title.toLowerCase().includes(debouncedSearch.toLowerCase())
             );
         }
 
@@ -28,24 +30,40 @@ export default function Home() {
         if (sort === 'category-desc') result.sort((a, b) => b.category.localeCompare(a.category));
 
         return result;
-    }, [products, search, category, sort]);
+    }, [products, debouncedSearch, category, sort]);
+
+    function resetSearch() {
+        setSearch('');
+    }
 
     if (loading) return <div className="text-center mt-5">Caricamento in corso...</div>;
-    if (error) return <div className="alert alert-danger mt-4">Errore: {error.message}</div>;
+    if (error) return <div className="alert alert-danger mt-4">Errore: {error}</div>;
 
     return (
         <main className="container mt-5">
             <h1 className="text-center mb-4">Catalogo Prodotti</h1>
 
-            <div className="row g-3 mb-4">
-                <div className="col-md-4">
+            <div className="row g-3 mb-3">
+                <div className="col-md-4 position-relative">
                     <input
                         type="text"
                         className="form-control"
                         placeholder="🔍 Cerca per titolo..."
                         value={search}
                         onChange={e => setSearch(e.target.value)}
+                        aria-label="Cerca per titolo"
+                        style={{ paddingRight: search ? '2.5rem' : undefined }}
                     />
+                    {search && (
+                        <button
+                            type="button"
+                            onClick={resetSearch}
+                            aria-label="Resetta ricerca"
+                            className="btn-clear-search"
+                        >
+                            ×
+                        </button>
+                    )}
                 </div>
 
                 <div className="col-md-4">
@@ -53,6 +71,7 @@ export default function Home() {
                         className="form-select"
                         value={category}
                         onChange={e => setCategory(e.target.value)}
+                        aria-label="Filtra per categoria"
                     >
                         <option value="">Tutte le categorie</option>
                         <option value="cuffie">Cuffie</option>
@@ -66,6 +85,7 @@ export default function Home() {
                         className="form-select"
                         value={sort}
                         onChange={e => setSort(e.target.value)}
+                        aria-label="Ordina prodotti"
                     >
                         <option value="title-asc">Titolo A-Z</option>
                         <option value="title-desc">Titolo Z-A</option>
@@ -75,13 +95,17 @@ export default function Home() {
                 </div>
             </div>
 
-            <div className="row">
-                {filteredProducts.map(product => (
-                    <div className="col-md-4 mb-4" key={product.title}>
-                        <ProductCard product={product} />
-                    </div>
-                ))}
-            </div>
+            {filteredProducts.length === 0 ? (
+                <p className="text-center">Nessun prodotto trovato.</p>
+            ) : (
+                <div className="row">
+                    {filteredProducts.map(product => (
+                        <div className="col-md-4 mb-4" key={product.id}>
+                            <ProductCard product={product} />
+                        </div>
+                    ))}
+                </div>
+            )}
         </main>
     );
 }
