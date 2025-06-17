@@ -1,15 +1,32 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect, useRef } from 'react';
 import ProductCard from '../components/ProductCard';
 import useProducts from '../hooks/useProducts';
-import useDebounce from '../hooks/useDebounce';
+
+function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+}
 
 export default function Home() {
-    const [search, setSearch] = useState('');
-    const debouncedSearch = useDebounce(search, 500);
+    const { products, loading, error } = useProducts();
+
+    const [searchTerm, setSearchTerm] = useState('');
+    const [debouncedSearch, setDebouncedSearch] = useState(searchTerm);
     const [category, setCategory] = useState('');
     const [sort, setSort] = useState('title-asc');
 
-    const { products, loading, error } = useProducts(debouncedSearch, category);
+    const inputRef = useRef(null);
+
+    // Debounce per la ricerca (500ms)
+    useEffect(() => {
+        const handler = setTimeout(() => {
+            setDebouncedSearch(searchTerm);
+            if (inputRef.current) {
+                inputRef.current.focus();
+            }
+        }, 500);
+
+        return () => clearTimeout(handler);
+    }, [searchTerm]);
 
     const filteredProducts = useMemo(() => {
         let result = [...products];
@@ -32,10 +49,6 @@ export default function Home() {
         return result;
     }, [products, debouncedSearch, category, sort]);
 
-    function resetSearch() {
-        setSearch('');
-    }
-
     if (loading) return <div className="text-center mt-5">Caricamento in corso...</div>;
     if (error) return <div className="alert alert-danger mt-4">Errore: {error}</div>;
 
@@ -43,27 +56,16 @@ export default function Home() {
         <main className="container mt-5">
             <h1 className="text-center mb-4">Catalogo Prodotti</h1>
 
-            <div className="row g-3 mb-3">
-                <div className="col-md-4 position-relative">
+            <div className="row g-3 mb-4">
+                <div className="col-md-4">
                     <input
+                        ref={inputRef}
                         type="text"
                         className="form-control"
                         placeholder="🔍 Cerca per titolo..."
-                        value={search}
-                        onChange={e => setSearch(e.target.value)}
-                        aria-label="Cerca per titolo"
-                        style={{ paddingRight: search ? '2.5rem' : undefined }}
+                        value={searchTerm}
+                        onChange={e => setSearchTerm(e.target.value)}
                     />
-                    {search && (
-                        <button
-                            type="button"
-                            onClick={resetSearch}
-                            aria-label="Resetta ricerca"
-                            className="btn-clear-search"
-                        >
-                            ×
-                        </button>
-                    )}
                 </div>
 
                 <div className="col-md-4">
@@ -71,7 +73,6 @@ export default function Home() {
                         className="form-select"
                         value={category}
                         onChange={e => setCategory(e.target.value)}
-                        aria-label="Filtra per categoria"
                     >
                         <option value="">Tutte le categorie</option>
                         <option value="cuffie">Cuffie</option>
@@ -85,7 +86,6 @@ export default function Home() {
                         className="form-select"
                         value={sort}
                         onChange={e => setSort(e.target.value)}
-                        aria-label="Ordina prodotti"
                     >
                         <option value="title-asc">Titolo A-Z</option>
                         <option value="title-desc">Titolo Z-A</option>
@@ -95,17 +95,18 @@ export default function Home() {
                 </div>
             </div>
 
-            {filteredProducts.length === 0 ? (
-                <p className="text-center">Nessun prodotto trovato.</p>
-            ) : (
-                <div className="row">
-                    {filteredProducts.map(product => (
-                        <div className="col-md-4 mb-4" key={product.id}>
-                            <ProductCard product={product} />
-                        </div>
-                    ))}
-                </div>
-            )}
+            <div className="row">
+                {filteredProducts.map(product => (
+                    <div className="col-md-4 mb-4" key={product.id}>
+                        <ProductCard
+                            product={{
+                                ...product,
+                                category: capitalizeFirstLetter(product.category),
+                            }}
+                        />
+                    </div>
+                ))}
+            </div>
         </main>
     );
 }

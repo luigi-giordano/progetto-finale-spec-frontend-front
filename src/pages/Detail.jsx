@@ -24,7 +24,7 @@ export default function Detail() {
                 const res = await fetch(`${VITE_API_URL}/products/${id}`);
                 if (!res.ok) throw new Error('Prodotto non trovato');
                 const data = await res.json();
-                setProduct(data);
+                setProduct(data.product);
             } catch (err) {
                 setError(err.message || 'Errore generico');
             } finally {
@@ -54,6 +54,29 @@ export default function Detail() {
                     <p><strong>Descrizione:</strong> {product.description}</p>
                 )}
 
+                {product.image && (
+                    <img
+                        src={product.image}
+                        alt={product.title}
+                        className="img-fluid my-3"
+                        style={{ maxWidth: '400px' }}
+                    />
+                )}
+
+                {product.features && product.features.length > 0 && (
+                    <>
+                        <h5>Caratteristiche:</h5>
+                        <ul>
+                            {product.features.map((feat, idx) => (
+                                <li key={idx}>{feat}</li>
+                            ))}
+                        </ul>
+                    </>
+                )}
+
+                {product.releaseYear && <p><strong>Anno di rilascio:</strong> {product.releaseYear}</p>}
+                {product.rating && <p><strong>Valutazione:</strong> {product.rating} / 5</p>}
+
                 <div className="mt-4">
                     <FavoriteButton
                         product={product}
@@ -63,7 +86,6 @@ export default function Detail() {
                 </div>
             </div>
 
-            {/* Bottone "Torna alla Home" sotto la card */}
             <div className="text-center">
                 <button className="btn btn-secondary" onClick={() => navigate('/')}>
                     ⬅ Torna alla Home
