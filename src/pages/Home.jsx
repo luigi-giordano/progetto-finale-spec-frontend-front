@@ -107,6 +107,8 @@ export default function Home() {
                     </div>
                 ) : (
                     filteredProducts.map(product => {
+                        console.log(product.image);
+
                         const isFavorite = favorites.some(p => p.id === product.id);
                         const isCompared = compareList.some(p => p.id === product.id);
 

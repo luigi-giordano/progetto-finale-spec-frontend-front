@@ -16,8 +16,8 @@ export default function ProductCard({
     return (
         <div className="card h-100 shadow-sm">
             <img
-                src={product.image}
                 className="card-img-top"
+                src={product.image}
                 alt={product.title}
                 style={{ objectFit: 'cover', height: '200px' }}
             />
