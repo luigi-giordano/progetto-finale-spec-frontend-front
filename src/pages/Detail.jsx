@@ -1,43 +1,23 @@
-import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import FavoriteButton from '../components/FavoriteButton';
 import { useGlobalContext } from '../context/GlobalContext';
-
-const { VITE_API_URL } = import.meta.env;
+import useProductsId from '../hooks/useProductsId';
 
 export default function Detail() {
     const { id } = useParams();
     const navigate = useNavigate();
 
-    const [product, setProduct] = useState(null);
-    const [error, setError] = useState('');
-    const [loading, setLoading] = useState(true);
+    const { product, loading, error } = useProductsId(id);
 
     const { favorites, addFavorite, removeFavorite } = useGlobalContext();
-
-    useEffect(() => {
-        async function fetchProduct() {
-            setLoading(true);
-            setError('');
-
-            try {
-                const res = await fetch(`${VITE_API_URL}/products/${id}`);
-                if (!res.ok) throw new Error('Prodotto non trovato');
-                const data = await res.json();
-                setProduct(data.product);
-            } catch (err) {
-                setError(err.message || 'Errore generico');
-            } finally {
-                setLoading(false);
-            }
-        }
-
-        fetchProduct();
-    }, [id]);
 
     if (loading) return <p className="text-center mt-5">Caricamento...</p>;
     if (error) return <p className="text-danger text-center mt-5">Errore: {error}</p>;
     if (!product) return <p className="text-center mt-5">Nessun prodotto trovato.</p>;
+
+    // Debug per vedere l'oggetto prodotto in console
+    console.log('Dettaglio prodotto:', product);
+    console.log('Immagine:', product.image);
 
     const isFavorite = favorites.some((fav) => fav.id === product.id);
 
