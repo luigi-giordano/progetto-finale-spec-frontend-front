@@ -54,10 +54,10 @@ function Compare() {
                                         Vedi dettagli
                                     </Link>
                                     <button
-                                        className="btn btn-outline-danger"
+                                        className="btn btn-outline-warning"
                                         onClick={() => removeFromCompare(product)}
                                     >
-                                        Rimuovi
+                                        Rimuovi dal confronto
                                     </button>
                                 </div>
                             </div>
