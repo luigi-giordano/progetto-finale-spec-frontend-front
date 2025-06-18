@@ -100,25 +100,32 @@ export default function Home() {
             </div>
 
             <div className="row">
-                {filteredProducts.map(product => {
-                    const isFavorite = favorites.some(p => p.id === product.id);
-                    const isCompared = compareList.some(p => p.id === product.id);
+                {filteredProducts.length === 0 ? (
+                    <div className="col-12 text-center mt-5">
+                        <h4>Nessun risultato trovato.</h4>
+                        <p>Prova a modificare la ricerca o i filtri.</p>
+                    </div>
+                ) : (
+                    filteredProducts.map(product => {
+                        const isFavorite = favorites.some(p => p.id === product.id);
+                        const isCompared = compareList.some(p => p.id === product.id);
 
-                    return (
-                        <div className="col-md-4 mb-4" key={product.id}>
-                            <ProductCard
-                                product={{ ...product, category: capitalizeFirstLetter(product.category) }}
-                                isFavorite={isFavorite}
-                                isCompared={isCompared}
-                                onToggleFavorite={toggleFavorite}
-                                onToggleCompare={product => {
-                                    if (isCompared) removeFromCompare(product);
-                                    else addToCompare(product);
-                                }}
-                            />
-                        </div>
-                    );
-                })}
+                        return (
+                            <div className="col-md-4 mb-4" key={product.id}>
+                                <ProductCard
+                                    product={{ ...product, category: capitalizeFirstLetter(product.category) }}
+                                    isFavorite={isFavorite}
+                                    isCompared={isCompared}
+                                    onToggleFavorite={toggleFavorite}
+                                    onToggleCompare={product => {
+                                        if (isCompared) removeFromCompare(product);
+                                        else addToCompare(product);
+                                    }}
+                                />
+                            </div>
+                        );
+                    })
+                )}
             </div>
         </main>
     );

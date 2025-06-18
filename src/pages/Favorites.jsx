@@ -9,7 +9,7 @@ export default function Favorites() {
         compareList,
         addToCompare,
         removeFromCompare,
-        clearFavorites,  // aggiunto qui
+        clearFavorites,
     } = useGlobalContext();
 
     // Se la lista preferiti è vuota, mostra messaggio + bottone per tornare alla Home
