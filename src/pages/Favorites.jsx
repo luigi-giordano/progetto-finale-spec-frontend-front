@@ -5,7 +5,6 @@ export default function Favorites() {
     const {
         favorites,
         toggleFavorite,
-        compareList,
         clearFavorites,
     } = useGlobalContext();
 
@@ -38,39 +37,43 @@ export default function Favorites() {
             </div>
 
             <div className="row">
-                {favorites.map((product) => (
-                    <div key={product.id} className="col-md-6 col-lg-3 mb-4">
-                        <div className="card h-100">
-                            <img
-                                src={product.image}
-                                className="card-img-top p-3"
-                                alt={product.title}
-                                style={{ height: '200px', objectFit: 'contain' }}
-                            />
-                            <div className="card-body d-flex flex-column">
-                                <h5 className="card-title">{product.title}</h5>
-                                <p className="card-text"><strong>Categoria:</strong> {product.category}</p>
-                                <p className="card-text"><strong>Prezzo:</strong> ${product.price}</p>
-                                <p className="card-text"><strong>Rating:</strong> {product.rating?.rate}</p>
+                {favorites.map((product) => {
+                    const imgUrl = `/img/${product.title}.jpg`.replaceAll(' ', '-');
 
-                                <div className="mt-auto d-flex flex-column gap-2">
-                                    <Link
-                                        to={`/detail/${product.id}`}
-                                        className="btn btn-outline-primary"
-                                    >
-                                        Vedi dettagli
-                                    </Link>
-                                    <button
-                                        className="btn btn-outline-danger"
-                                        onClick={() => toggleFavorite(product)}
-                                    >
-                                        Rimuovi dai preferiti
-                                    </button>
+                    return (
+                        <div key={product.id} className="col-md-6 col-lg-3 mb-4">
+                            <div className="card h-100">
+                                <img
+                                    src={imgUrl}
+                                    className="card-img-top p-3"
+                                    alt={product.title}
+                                    style={{ height: '200px', objectFit: 'contain' }}
+                                />
+                                <div className="card-body d-flex flex-column">
+                                    <h5 className="card-title">{product.title}</h5>
+                                    <p className="card-text"><strong>Categoria:</strong> {product.category}</p>
+                                    <p className="card-text"><strong>Prezzo:</strong> ${product.price}</p>
+                                    <p className="card-text"><strong>Rating:</strong> {product.rating?.rate}</p>
+
+                                    <div className="mt-auto d-flex flex-column gap-2">
+                                        <Link
+                                            to={`/detail/${product.id}`}
+                                            className="btn btn-outline-primary"
+                                        >
+                                            Vedi dettagli
+                                        </Link>
+                                        <button
+                                            className="btn btn-outline-danger"
+                                            onClick={() => toggleFavorite(product)}
+                                        >
+                                            Rimuovi dai preferiti
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                ))}
+                    )
+                })}
             </div>
         </div>
     );

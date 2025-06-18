@@ -45,15 +45,16 @@ export function GlobalProvider({ children }) {
     }, [compareList]);
 
     function addToCompare(product) {
-        setCompareList((prev) => {
-            if (prev.find((p) => p.id === product.id)) return prev;
-
-            if (prev.length >= 4) {
-                alert("Puoi confrontare al massimo 4 prodotti.");
-                return prev;
-            }
-
-            return [...prev, product];
+        //Controllo se la lista ha gia 4 prodotti
+        //Se si, non aggiungo il prodotto e mostro un alert
+        if (compareList.length >= 4) {
+            alert("Puoi confrontare al massimo 4 prodotti.");
+            return;
+        };
+        //Se no, aggiungo il prodotto alla lista
+        setCompareList((compareListPrev) => {
+            if (compareListPrev.find((p) => p.id === product.id)) return compareListPrev; // Se il prodotto è già nella lista, non lo aggiungo
+            return [...compareListPrev, product]; // Altrimenti lo aggiungo
         });
     }
 

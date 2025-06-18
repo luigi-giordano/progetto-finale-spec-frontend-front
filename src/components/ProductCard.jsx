@@ -13,11 +13,13 @@ export default function ProductCard({
     onToggleFavorite,
     onToggleCompare,
 }) {
+    const imgUrl = `/img/${product.title}.jpg`.replaceAll(' ', '-');
+
     return (
         <div className="card h-100 shadow-sm">
             <img
                 className="card-img-top"
-                src={product.image}
+                src={imgUrl}
                 alt={product.title}
                 style={{ objectFit: 'cover', height: '200px' }}
             />
