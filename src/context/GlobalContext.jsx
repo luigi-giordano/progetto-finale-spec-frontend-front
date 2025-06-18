@@ -3,22 +3,19 @@ import { createContext, useContext, useState, useEffect } from "react";
 export const GlobalContext = createContext();
 
 export function GlobalProvider({ children }) {
-    // Stato preferiti (array di prodotti)
+    // Preferiti
     const [favorites, setFavorites] = useState(() => {
-        // Legge da localStorage all'avvio per persistenza
         const stored = localStorage.getItem("favorites");
         return stored ? JSON.parse(stored) : [];
     });
 
-    // Sync con localStorage ogni volta che favorites cambia
     useEffect(() => {
         localStorage.setItem("favorites", JSON.stringify(favorites));
     }, [favorites]);
 
-    // Funzioni per aggiungere/rimuovere preferiti
     function addFavorite(product) {
         setFavorites((prev) => {
-            if (prev.find((p) => p.id === product.id)) return prev; // evita duplicati
+            if (prev.find((p) => p.id === product.id)) return prev;
             return [...prev, product];
         });
     }
@@ -29,16 +26,59 @@ export function GlobalProvider({ children }) {
 
     function toggleFavorite(product) {
         const isAlreadyFavorite = favorites.some((p) => p.id === product.id);
-        if (isAlreadyFavorite) {
-            removeFavorite(product);
-        } else {
-            addFavorite(product);
-        }
+        isAlreadyFavorite ? removeFavorite(product) : addFavorite(product);
     }
 
+    // Nuova funzione per svuotare tutti i preferiti
+    function clearFavorites() {
+        setFavorites([]);
+    }
+
+    // Comparazione
+    const [compareList, setCompareList] = useState(() => {
+        const stored = localStorage.getItem("compare");
+        return stored ? JSON.parse(stored) : [];
+    });
+
+    useEffect(() => {
+        localStorage.setItem("compare", JSON.stringify(compareList));
+    }, [compareList]);
+
+    function addToCompare(product) {
+        setCompareList((prev) => {
+            if (prev.find((p) => p.id === product.id)) return prev;
+
+            if (prev.length >= 4) {
+                alert("Puoi confrontare al massimo 4 prodotti.");
+                return prev;
+            }
+
+            return [...prev, product];
+        });
+    }
+
+    function removeFromCompare(product) {
+        setCompareList((prev) => prev.filter((p) => p.id !== product.id));
+    }
+
+    function clearCompare() {
+        setCompareList([]);
+    }
 
     return (
-        <GlobalContext.Provider value={{ favorites, addFavorite, removeFavorite, toggleFavorite }}>
+        <GlobalContext.Provider
+            value={{
+                favorites,
+                addFavorite,
+                removeFavorite,
+                toggleFavorite,
+                clearFavorites,
+                compareList,
+                addToCompare,
+                removeFromCompare,
+                clearCompare,
+            }}
+        >
             {children}
         </GlobalContext.Provider>
     );

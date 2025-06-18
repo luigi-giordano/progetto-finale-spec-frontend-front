@@ -1,6 +1,7 @@
 import { useState, useMemo, useEffect, useRef } from 'react';
-import ProductCard from '../components/ProductCard';
 import useProducts from '../hooks/useProducts';
+import { useGlobalContext } from '../context/GlobalContext';
+import ProductCard from '../components/ProductCard';
 
 function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
@@ -8,6 +9,13 @@ function capitalizeFirstLetter(string) {
 
 export default function Home() {
     const { products, loading, error } = useProducts();
+    const {
+        favorites,
+        toggleFavorite,
+        compareList,
+        addToCompare,
+        removeFromCompare,
+    } = useGlobalContext();
 
     const [searchTerm, setSearchTerm] = useState('');
     const [debouncedSearch, setDebouncedSearch] = useState(searchTerm);
@@ -16,15 +24,11 @@ export default function Home() {
 
     const inputRef = useRef(null);
 
-    // Debounce per la ricerca (500ms)
     useEffect(() => {
         const handler = setTimeout(() => {
             setDebouncedSearch(searchTerm);
-            if (inputRef.current) {
-                inputRef.current.focus();
-            }
+            if (inputRef.current) inputRef.current.focus();
         }, 500);
-
         return () => clearTimeout(handler);
     }, [searchTerm]);
 
@@ -96,16 +100,25 @@ export default function Home() {
             </div>
 
             <div className="row">
-                {filteredProducts.map(product => (
-                    <div className="col-md-4 mb-4" key={product.id}>
-                        <ProductCard
-                            product={{
-                                ...product,
-                                category: capitalizeFirstLetter(product.category),
-                            }}
-                        />
-                    </div>
-                ))}
+                {filteredProducts.map(product => {
+                    const isFavorite = favorites.some(p => p.id === product.id);
+                    const isCompared = compareList.some(p => p.id === product.id);
+
+                    return (
+                        <div className="col-md-4 mb-4" key={product.id}>
+                            <ProductCard
+                                product={{ ...product, category: capitalizeFirstLetter(product.category) }}
+                                isFavorite={isFavorite}
+                                isCompared={isCompared}
+                                onToggleFavorite={toggleFavorite}
+                                onToggleCompare={product => {
+                                    if (isCompared) removeFromCompare(product);
+                                    else addToCompare(product);
+                                }}
+                            />
+                        </div>
+                    );
+                })}
             </div>
         </main>
     );
