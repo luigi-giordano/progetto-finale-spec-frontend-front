@@ -40,6 +40,7 @@ export default function Detail() {
     if (!product) return <p className="text-center mt-5">Nessun prodotto trovato.</p>;
 
     const isFavorite = favorites.some((fav) => fav.id === product.id);
+
     const toggleFavorite = () =>
         isFavorite ? removeFavorite(product) : addFavorite(product);
 
@@ -87,8 +88,8 @@ export default function Detail() {
             </div>
 
             <div className="text-center">
-                <button className="btn btn-secondary" onClick={() => navigate('/')}>
-                    ⬅ Torna alla Home
+                <button className="btn btn-secondary" onClick={() => navigate(-1)}>
+                    ⬅ Torna indietro
                 </button>
             </div>
         </div>
