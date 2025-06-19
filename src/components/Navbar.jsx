@@ -3,14 +3,14 @@ import { NavLink } from "react-router-dom";
 
 const Navbar = () => {
     return (
-        <nav className="navbar navbar-expand-lg navbar-light bg-light">
+        <nav className="navbar navbar-expand-lg">
             <div className="container-fluid">
-                {/* Brand o logo */}
+                {/* Brand/logo */}
                 <NavLink className="navbar-brand" to="/">
-                    MyApp
+                    🛒 MyApp
                 </NavLink>
 
-                {/* Toggle button per mobile */}
+                {/* Toggler per mobile */}
                 <button
                     className="navbar-toggler"
                     type="button"
@@ -23,7 +23,7 @@ const Navbar = () => {
                     <span className="navbar-toggler-icon"></span>
                 </button>
 
-                {/* Menu link */}
+                {/* Collegamenti navigazione */}
                 <div className="collapse navbar-collapse" id="navbarNav">
                     <ul className="navbar-nav ms-auto">
                         <li className="nav-item">
@@ -33,29 +33,27 @@ const Navbar = () => {
                                     "nav-link" + (isActive ? " active" : "")
                                 }
                             >
-                                Home
+                                🏠 Home
                             </NavLink>
                         </li>
-
                         <li className="nav-item">
                             <NavLink
                                 to="/favorites"
                                 className={({ isActive }) =>
-                                    "nav-link" + (isActive ? " active" : "")
+                                    "nav-link favorite-link" + (isActive ? " active" : "")
                                 }
                             >
-                                Favorites
+                                ❤️ Favorites
                             </NavLink>
                         </li>
-
                         <li className="nav-item">
                             <NavLink
                                 to="/compare"
                                 className={({ isActive }) =>
-                                    "nav-link" + (isActive ? " active" : "")
+                                    "nav-link compare-link" + (isActive ? " active" : "")
                                 }
                             >
-                                Compare
+                                🔍 Compare
                             </NavLink>
                         </li>
                     </ul>
