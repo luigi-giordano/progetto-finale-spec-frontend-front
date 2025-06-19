@@ -21,7 +21,7 @@ export default function ProductCard({
                 className="card-img-top"
                 src={imgUrl}
                 alt={product.title}
-                style={{ objectFit: 'cover', height: '200px' }}
+                style={{ objectFit: 'contain', height: '200px' }}
             />
             <div className="card-body d-flex flex-column">
                 <h5 className="card-title">{product.title}</h5>

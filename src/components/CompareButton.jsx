@@ -1,10 +1,10 @@
-export default function CompareButton({ product, isCompared, onToggle }) {
+export default function CompareButton({ product, isActive, onToggle }) {
     return (
         <button
-            className={`btn btn-sm ${isCompared ? 'btn-warning' : 'btn-outline-warning'}`}
+            className={`btn btn-sm ${isActive ? 'btn-warning' : 'btn-outline-warning'}`}
             onClick={() => onToggle(product)}
         >
-            {isCompared ? '🚫 Rimuovi dal confronto' : '🔍 Aggiungi al confronto'}
+            {isActive ? '🚫 Rimuovi dal confronto' : '🔍 Aggiungi al confronto'}
         </button>
     );
 }

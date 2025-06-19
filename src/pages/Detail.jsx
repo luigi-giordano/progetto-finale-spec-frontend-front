@@ -3,6 +3,7 @@ import FavoriteButton from '../components/FavoriteButton';
 import CompareButton from '../components/CompareButton';
 import { useGlobalContext } from '../context/GlobalContext';
 import useProductsId from '../hooks/useProductsId';
+import StarRating from '../components/StarRating';
 
 export default function Detail() {
     const { id } = useParams();
@@ -15,7 +16,8 @@ export default function Detail() {
         addFavorite,
         removeFavorite,
         compareList,
-        toggleCompare,
+        addToCompare,
+        removeFromCompare,
     } = useGlobalContext();
 
     if (loading) return <p className="text-center mt-5">Caricamento...</p>;
@@ -23,58 +25,70 @@ export default function Detail() {
     if (!product) return <p className="text-center mt-5">Nessun prodotto trovato.</p>;
 
     const isFavorite = favorites.some((fav) => fav.id === product.id);
-    const isCompared = compareList.some((p) => p.id === product.id);
+    const isCompared = compareList.some((item) => item.id === product.id);
 
     const toggleFavorite = () =>
         isFavorite ? removeFavorite(product) : addFavorite(product);
 
-    const handleToggleCompare = () => toggleCompare(product);
+    const toggleCompare = () =>
+        isCompared ? removeFromCompare(product) : addToCompare(product);
 
     return (
         <div className="container mt-5">
-            <div className="card shadow-sm p-4 mb-4">
-                <h2 className="mb-4">{product.title}</h2>
-                <p><strong>Categoria:</strong> {product.category}</p>
-                {product.price && <p><strong>Prezzo:</strong> €{product.price}</p>}
-                {product.brand && <p><strong>Marca:</strong> {product.brand}</p>}
-                {product.description && (
-                    <p><strong>Descrizione:</strong> {product.description}</p>
-                )}
+            <div className="card shadow-sm p-4 mb-4 d-flex flex-row align-items-start">
+                <div style={{ flex: 1, paddingRight: '20px' }}>
+                    <h2 className="mb-4">{product.title}</h2>
+                    <p><strong>Categoria:</strong> {product.category}</p>
+                    {product.price && <p><strong>Prezzo:</strong> €{product.price}</p>}
+                    {product.brand && <p><strong>Marca:</strong> {product.brand}</p>}
+                    {product.description && (
+                        <p><strong>Descrizione:</strong> {product.description}</p>
+                    )}
 
-                {product.image && (
-                    <img
-                        src={product.image}
-                        alt={product.title}
-                        className="img-fluid my-3"
-                        style={{ maxWidth: '400px' }}
-                    />
-                )}
+                    {product.features && product.features.length > 0 && (
+                        <>
+                            <h5>Caratteristiche:</h5>
+                            <ul>
+                                {product.features.map((feat, idx) => (
+                                    <li key={idx}>{feat}</li>
+                                ))}
+                            </ul>
+                        </>
+                    )}
 
-                {product.features && product.features.length > 0 && (
-                    <>
-                        <h5>Caratteristiche:</h5>
-                        <ul>
-                            {product.features.map((feat, idx) => (
-                                <li key={idx}>{feat}</li>
-                            ))}
-                        </ul>
-                    </>
-                )}
+                    {product.releaseYear && <p><strong>Anno di rilascio:</strong> {product.releaseYear}</p>}
+                    {product.rating && (
+                        <div className="mt-3">
+                            <strong>Valutazione:</strong>
+                            <StarRating rating={product.rating} />
+                        </div>
+                    )}
 
-                {product.releaseYear && <p><strong>Anno di rilascio:</strong> {product.releaseYear}</p>}
-                {product.rating && <p><strong>Valutazione:</strong> {product.rating} / 5</p>}
 
-                <div className="mt-4 d-flex gap-2">
-                    <FavoriteButton
-                        product={product}
-                        isFavorite={isFavorite}
-                        onToggle={toggleFavorite}
-                    />
-                    <CompareButton
-                        product={product}
-                        isCompared={isCompared}
-                        onToggle={handleToggleCompare}
-                    />
+
+                    <div className="mt-4 d-flex gap-3">
+                        <FavoriteButton
+                            product={product}
+                            isActive={isFavorite}
+                            onToggle={toggleFavorite}
+                        />
+                        <CompareButton
+                            product={product}
+                            isActive={isCompared}
+                            onToggle={toggleCompare}
+                        />
+                    </div>
+                </div>
+
+                <div style={{ flex: 1, maxWidth: '400px' }}>
+                    {product.image && (
+                        <img
+                            src={product.image}
+                            alt={product.title}
+                            className="img-fluid"
+                            style={{ maxWidth: '100%', borderRadius: '8px' }}
+                        />
+                    )}
                 </div>
             </div>
 

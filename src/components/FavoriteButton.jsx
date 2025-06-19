@@ -1,10 +1,10 @@
-export default function FavoriteButton({ product, isFavorite, onToggle }) {
+export default function FavoriteButton({ product, isActive, onToggle }) {
     return (
         <button
-            className={`btn ${isFavorite ? 'btn-danger' : 'btn-outline-primary'} mt-3`}
+            className={`btn btn-sm ${isActive ? 'btn-danger' : 'btn-outline-danger'}`}
             onClick={() => onToggle(product)}
         >
-            {isFavorite ? '★ Rimuovi dai Preferiti' : '☆ Aggiungi ai Preferiti'}
+            {isActive ? '★ Rimuovi dai Preferiti' : '☆ Aggiungi ai Preferiti'}
         </button>
     );
 }
