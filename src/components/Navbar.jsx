@@ -58,8 +58,6 @@ const Navbar = () => {
                                 Compare
                             </NavLink>
                         </li>
-
-                        {/* Aggiungi altri link se vuoi */}
                     </ul>
                 </div>
             </div>

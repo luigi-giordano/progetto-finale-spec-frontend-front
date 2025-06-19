@@ -57,15 +57,20 @@ export default function Home() {
     if (error) return <div className="alert alert-danger mt-4">Errore: {error}</div>;
 
     return (
-        <main className="container mt-5">
-            <h1 className="text-center mb-4">Catalogo Prodotti</h1>
+        <main className="container my-5">
+            {/* Hero Section */}
+            <div className="text-center mb-5">
+                <h1 className="display-4 fw-bold">🎧 Catalogo Tech</h1>
+                <p className="lead text-muted">Scopri e confronta i migliori prodotti audio e video.</p>
+            </div>
 
-            <div className="row g-3 mb-4">
+            {/* Filters */}
+            <div className="row g-3 mb-5">
                 <div className="col-md-4">
                     <input
                         ref={inputRef}
                         type="text"
-                        className="form-control"
+                        className="form-control shadow-sm"
                         placeholder="🔍 Cerca per titolo..."
                         value={searchTerm}
                         onChange={e => setSearchTerm(e.target.value)}
@@ -74,20 +79,20 @@ export default function Home() {
 
                 <div className="col-md-4">
                     <select
-                        className="form-select"
+                        className="form-select shadow-sm"
                         value={category}
                         onChange={e => setCategory(e.target.value)}
                     >
                         <option value="">Tutte le categorie</option>
-                        <option value="cuffie">Cuffie</option>
-                        <option value="fotocamere">Fotocamere</option>
-                        <option value="microfoni">Microfoni</option>
+                        <option value="cuffie">Cuffie 🎧</option>
+                        <option value="fotocamere">Fotocamere 📷</option>
+                        <option value="microfoni">Microfoni 🎤</option>
                     </select>
                 </div>
 
                 <div className="col-md-4">
                     <select
-                        className="form-select"
+                        className="form-select shadow-sm"
                         value={sort}
                         onChange={e => setSort(e.target.value)}
                     >
@@ -113,7 +118,10 @@ export default function Home() {
                         return (
                             <div className="col-md-4 mb-4" key={product.id}>
                                 <ProductCard
-                                    product={{ ...product, category: capitalizeFirstLetter(product.category) }}
+                                    product={{
+                                        ...product,
+                                        category: capitalizeFirstLetter(product.category),
+                                    }}
                                     isFavorite={isFavorite}
                                     isCompared={isCompared}
                                     onToggleFavorite={toggleFavorite}

@@ -5,53 +5,85 @@
     font-family: 'Open Sans', sans-serif;
 }
 
+/* === HERO === */
+.hero {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.hero h1 {
+    font-size: 2.8rem;
+    font-weight: 800;
+    color: #222;
+}
+
+.hero p {
+    font-size: 1.1rem;
+    color: #666;
+}
+
+/* === CARD PRODOTTO === */
 .product-card {
-    border: 1px solid #ccc;
-    padding: 12px;
-    border-radius: 8px;
-    width: 250px;
-    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.2s ease;
+    border: 1px solid #e0e0e0;
+    padding: 16px;
+    border-radius: 12px;
+    width: 100%;
+    max-width: 280px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .product-card:hover {
-    transform: scale(1.05);
+    transform: scale(1.03);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
 }
 
 .product-image {
     width: 100%;
-    height: auto;
-    border-radius: 4px;
+    height: 200px;
+    object-fit: contain;
+    margin-bottom: 12px;
+    border-radius: 6px;
+    background-color: #f9f9f9;
 }
 
 .product-title {
     font-size: 1.1rem;
     margin: 8px 0 4px 0;
+    font-weight: 600;
+    text-align: center;
 }
 
 .product-category {
-    color: #666;
-    font-size: 0.9rem;
+    color: #999;
+    font-size: 0.85rem;
     margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
 
 .product-price {
     font-weight: bold;
-    font-size: 1rem;
+    font-size: 1.1rem;
     color: #333;
 }
 
+/* === HOME CONTAINER === */
 .home {
     padding: 2rem;
     max-width: 1300px;
     margin: 0 auto;
-
 }
 
+/* === GRID E FILTRI === */
 .product-grid {
     display: flex;
     flex-wrap: wrap;
-    gap: 1rem;
+    gap: 2rem;
     justify-content: center;
 }
 
@@ -65,10 +97,23 @@
 
 .filters input,
 .filters select {
-    padding: 0.5rem;
+    padding: 0.6rem 0.9rem;
     font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    background-color: #fff;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
+.filters input:focus,
+.filters select:focus {
+    border-color: #0d6efd;
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(13, 110, 253, 0.25);
+}
+
+/* === BOTTONE CANCELLA RICERCA === */
 .btn-clear-search {
     position: absolute;
     right: 0.75rem;
@@ -91,4 +136,21 @@
 .btn-clear-search:focus {
     color: #dc3545;
     outline: none;
+}
+
+/* === VALUTAZIONE (STARS) === */
+.star-rating {
+    display: flex;
+    gap: 2px;
+    margin: 0.3rem 0;
+    justify-content: center;
+    font-size: 1.2rem;
+    color: #ffc107;
+}
+
+.rating-number {
+    font-size: 0.85rem;
+    color: #555;
+    text-align: center;
+    margin-top: 4px;
 }
