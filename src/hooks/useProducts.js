@@ -21,8 +21,6 @@ export default function useProducts(search = '', category = '') {
                 if (!res.ok) throw new Error('Errore nel recupero dei prodotti');
                 const data = await res.json();
 
-                console.log('✅ Tutti i prodotti:', data);
-
                 setProducts(data); // data = array di prodotti
             } catch (err) {
                 setError(err.message || 'Errore generico');
