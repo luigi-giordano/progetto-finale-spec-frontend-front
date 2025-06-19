@@ -18,9 +18,6 @@ export default function useProductId(id) {
                 const res = await fetch(`${VITE_API_URL}/products/${id}`);
                 if (!res.ok) throw new Error('Prodotto non trovato');
                 const data = await res.json();
-
-                console.log('✅ Prodotto singolo:', data);
-
                 setProduct(data.product); // data.product = oggetto del prodotto
             } catch (err) {
                 setError(err.message || 'Errore generico');

@@ -15,9 +15,9 @@ export default function Detail() {
     if (error) return <p className="text-danger text-center mt-5">Errore: {error}</p>;
     if (!product) return <p className="text-center mt-5">Nessun prodotto trovato.</p>;
 
-    // Debug per vedere l'oggetto prodotto in console
-    console.log('Dettaglio prodotto:', product);
-    console.log('Immagine:', product.image);
+    // // Debug per vedere l'oggetto prodotto in console
+    // console.log('Dettaglio prodotto:', product);
+    // console.log('Immagine:', product.image);
 
     const isFavorite = favorites.some((fav) => fav.id === product.id);
 

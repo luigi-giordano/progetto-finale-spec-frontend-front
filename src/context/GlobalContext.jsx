@@ -15,10 +15,17 @@ export function GlobalProvider({ children }) {
 
     function addFavorite(product) {
         setFavorites((prev) => {
-            if (prev.find((p) => p.id === product.id)) return prev;
-            return [...prev, product];
+            const isInList = prev.some((p) => p.id === product.id);
+            if (isInList) return prev;
+
+            // Cerca il prodotto completo, se esiste
+            const full = products.find((p) => p.id === product.id);
+            const enriched = full ? { ...full, ...product } : product;
+
+            return [...prev, enriched];
         });
     }
+
 
     function removeFavorite(product) {
         setFavorites((prev) => prev.filter((p) => p.id !== product.id));

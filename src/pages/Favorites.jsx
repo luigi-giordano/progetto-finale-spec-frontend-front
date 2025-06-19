@@ -19,6 +19,7 @@ export default function Favorites() {
             </div>
         );
     }
+    console.log('TUTTI I PREFERITI:', favorites);
 
     return (
         <div className="container mt-5">
@@ -38,6 +39,8 @@ export default function Favorites() {
 
             <div className="row">
                 {favorites.map((product) => {
+                    console.log(product);
+
                     const imgUrl = `/img/${product.title}.jpg`.replaceAll(' ', '-');
 
                     return (
@@ -52,7 +55,7 @@ export default function Favorites() {
                                 <div className="card-body d-flex flex-column">
                                     <h5 className="card-title">{product.title}</h5>
                                     <p className="card-text"><strong>Categoria:</strong> {product.category}</p>
-                                    <p className="card-text"><strong>Prezzo:</strong> ${product.price}</p>
+                                    <p className="card-text"><strong>Prezzo:</strong> €{product.price}</p>
                                     <p className="card-text"><strong>Rating:</strong> {product.rating?.rate}</p>
 
                                     <div className="mt-auto d-flex flex-column gap-2">
