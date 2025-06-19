@@ -1,5 +1,6 @@
 import { useParams, useNavigate } from 'react-router-dom';
 import FavoriteButton from '../components/FavoriteButton';
+import CompareButton from '../components/CompareButton';
 import { useGlobalContext } from '../context/GlobalContext';
 import useProductsId from '../hooks/useProductsId';
 
@@ -9,20 +10,25 @@ export default function Detail() {
 
     const { product, loading, error } = useProductsId(id);
 
-    const { favorites, addFavorite, removeFavorite } = useGlobalContext();
+    const {
+        favorites,
+        addFavorite,
+        removeFavorite,
+        compareList,
+        toggleCompare,
+    } = useGlobalContext();
 
     if (loading) return <p className="text-center mt-5">Caricamento...</p>;
     if (error) return <p className="text-danger text-center mt-5">Errore: {error}</p>;
     if (!product) return <p className="text-center mt-5">Nessun prodotto trovato.</p>;
 
-    // // Debug per vedere l'oggetto prodotto in console
-    // console.log('Dettaglio prodotto:', product);
-    // console.log('Immagine:', product.image);
-
     const isFavorite = favorites.some((fav) => fav.id === product.id);
+    const isCompared = compareList.some((p) => p.id === product.id);
 
     const toggleFavorite = () =>
         isFavorite ? removeFavorite(product) : addFavorite(product);
+
+    const handleToggleCompare = () => toggleCompare(product);
 
     return (
         <div className="container mt-5">
@@ -58,11 +64,16 @@ export default function Detail() {
                 {product.releaseYear && <p><strong>Anno di rilascio:</strong> {product.releaseYear}</p>}
                 {product.rating && <p><strong>Valutazione:</strong> {product.rating} / 5</p>}
 
-                <div className="mt-4">
+                <div className="mt-4 d-flex gap-2">
                     <FavoriteButton
                         product={product}
                         isFavorite={isFavorite}
                         onToggle={toggleFavorite}
+                    />
+                    <CompareButton
+                        product={product}
+                        isCompared={isCompared}
+                        onToggle={handleToggleCompare}
                     />
                 </div>
             </div>

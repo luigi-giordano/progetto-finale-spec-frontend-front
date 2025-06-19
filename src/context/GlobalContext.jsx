@@ -14,15 +14,11 @@ export function GlobalProvider({ children }) {
     }, [favorites]);
 
     function addFavorite(product) {
+
         setFavorites((prev) => {
             const isInList = prev.some((p) => p.id === product.id);
             if (isInList) return prev;
-
-            // Cerca il prodotto completo, se esiste
-            const full = products.find((p) => p.id === product.id);
-            const enriched = full ? { ...full, ...product } : product;
-
-            return [...prev, enriched];
+            return [...prev, product]; // Aggiungi direttamente il prodotto passato
         });
     }
 
@@ -69,6 +65,16 @@ export function GlobalProvider({ children }) {
         setCompareList((prev) => prev.filter((p) => p.id !== product.id));
     }
 
+    function toggleCompare(product) {
+        const isAlreadyInCompare = compareList.some((p) => p.id === product.id);
+        if (isAlreadyInCompare) {
+            removeFromCompare(product);
+        } else {
+            addToCompare(product);
+        }
+    }
+
+
     function clearCompare() {
         setCompareList([]);
     }
@@ -85,6 +91,7 @@ export function GlobalProvider({ children }) {
                 addToCompare,
                 removeFromCompare,
                 clearCompare,
+                toggleCompare,
             }}
         >
             {children}
