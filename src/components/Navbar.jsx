@@ -7,7 +7,7 @@ const Navbar = () => {
             <div className="container-fluid">
                 {/* Brand/logo */}
                 <NavLink className="navbar-brand" to="/">
-                    🛒 MyApp
+                    🛒 AmazBool
                 </NavLink>
 
                 {/* Toggler per mobile */}
