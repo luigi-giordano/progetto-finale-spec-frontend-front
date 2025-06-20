@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 const { VITE_API_URL } = import.meta.env;
 
@@ -7,7 +7,13 @@ export default function useProducts(search = '', category = '') {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
+    const fetchedOnce = useRef(false); // ✅ Blocca fetch multipli in StrictMode
+
     useEffect(() => {
+        // ✅ Se abbiamo già fatto il fetch, non farlo di nuovo
+        if (fetchedOnce.current) return;
+        fetchedOnce.current = true;
+
         async function fetchProducts() {
             setLoading(true);
             setError(null);
@@ -20,7 +26,8 @@ export default function useProducts(search = '', category = '') {
                 const res = await fetch(`${VITE_API_URL}/products?${params.toString()}`);
                 if (!res.ok) throw new Error('Errore nel recupero dei prodotti');
                 const data = await res.json();
-                // Arricchisci i dati del prodotto con endpoint singolo prodotto
+
+                // Arricchisci con dettagli
                 const enrichedData = await Promise.all(data.map(async (product) => {
                     const res = await fetch(`${VITE_API_URL}/products/${product.id}`);
                     if (!res.ok) throw new Error('Errore nel recupero del prodotto');
@@ -32,7 +39,7 @@ export default function useProducts(search = '', category = '') {
                     };
                 }));
 
-                setProducts(enrichedData); // array di prodotti arricchiti con i dettagli
+                setProducts(enrichedData);
             } catch (err) {
                 setError(err.message || 'Errore generico');
             } finally {
