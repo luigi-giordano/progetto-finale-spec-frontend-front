@@ -92,8 +92,8 @@ export default function Detail() {
                 </div>
             </div>
 
-            <div className="text-center">
-                <button className="btn btn-secondary" onClick={() => navigate(-1)}>
+            <div className="text-center my-4">
+                <button className="btn btn-outline-primary back-button" onClick={() => navigate(-1)}>
                     ⬅ Torna indietro
                 </button>
             </div>

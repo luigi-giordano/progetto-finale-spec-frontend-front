@@ -7,7 +7,7 @@ function Compare() {
     if (compareList.length === 0) {
         return (
             <div className="container my-5 text-center">
-                <h4>Nessun prodotto da confrontare.</h4>
+                <h2>Nessun prodotto da confrontare!</h2>
                 <p>Aggiungi prodotti dalla home cliccando su "Confronta".</p>
                 <Link to="/" className="btn btn-primary mt-3">
                     Torna alla Home
@@ -19,7 +19,7 @@ function Compare() {
     return (
         <div className="container my-5">
             <div className="d-flex justify-content-between align-items-center mb-4">
-                <h2>Confronto Prodotti</h2>
+                <h2>Lista Confronto Prodotti</h2>
                 <button className="btn btn-danger" onClick={() => {
                     if (window.confirm('Vuoi svuotare tutti i prodotti comparati?')) {
                         clearCompare();

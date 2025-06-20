@@ -5,6 +5,8 @@ import Home from './pages/Home';
 import Detail from './pages/Detail';
 import Favorites from './pages/Favorites';
 import Compare from './pages/Compare';
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 export default function App() {
   return (

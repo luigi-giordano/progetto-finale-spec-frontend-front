@@ -113,6 +113,14 @@
     color: #666;
 }
 
+.image-slider {
+    max-width: 900px;
+    margin: 0 auto 3rem;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+
 /* === CARD PRODOTTO === */
 .product-card {
     border: 1px solid #e0e0e0;
@@ -244,4 +252,24 @@
     color: #555;
     text-align: center;
     margin-top: 4px;
+}
+
+/* === BOTTONE "TORNA INDIETRO" === */
+.back-button {
+    font-weight: 600;
+    font-size: 1rem;
+    border-radius: 10px;
+    padding: 0.5rem 1.2rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(13, 110, 253, 0.1);
+    border: 2px solid #0d6efd;
+    background-color: transparent;
+    color: #0d6efd;
+}
+
+.back-button:hover {
+    background-color: #0d6efd;
+    color: #fff;
+    transform: translateX(-3px);
+    box-shadow: 0 6px 12px rgba(13, 110, 253, 0.2);
 }

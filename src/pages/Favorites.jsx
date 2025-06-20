@@ -11,7 +11,7 @@ export default function Favorites() {
     if (favorites.length === 0) {
         return (
             <div className="container mt-5 text-center">
-                <h2>Nessun prodotto nei preferiti</h2>
+                <h2>Nessun prodotto nei preferiti!</h2>
                 <p>Aggiungi prodotti ai preferiti per vederli qui.</p>
                 <Link to="/" className="btn btn-primary mt-3">
                     Torna alla Home
@@ -19,12 +19,11 @@ export default function Favorites() {
             </div>
         );
     }
-    console.log('TUTTI I PREFERITI:', favorites);
 
     return (
         <div className="container mt-5">
             <div className="d-flex justify-content-between align-items-center mb-4">
-                <h1>Preferiti</h1>
+                <h2>Lista Dei Preferiti</h2>
                 <button
                     className="btn btn-danger"
                     onClick={() => {
