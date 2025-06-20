@@ -38,7 +38,6 @@ export default function Favorites() {
 
             <div className="row">
                 {favorites.map((product) => {
-                    console.log(product);
 
                     const imgUrl = `/img/${product.title}.jpg`.replaceAll(' ', '-');
 

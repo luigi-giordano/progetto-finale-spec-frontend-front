@@ -10,7 +10,6 @@ function capitalizeFirstLetter(string) {
 
 export default function Home() {
     const { products, loading, error } = useProducts();
-    console.log('Products:', products);
 
     const {
         favorites,
