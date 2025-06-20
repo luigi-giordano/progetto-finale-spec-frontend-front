@@ -56,9 +56,9 @@ export default function Home() {
     }, [products, debouncedSearch, category, sort]);
 
     const sliderImages = [
-        "/images/slide1.jpg",
-        "/images/slide2.jpg",
-        "/images/slide3.jpg"
+        "/img/slide1.png",
+        "/img/slide2.png",
+        "/img/slide3.png"
     ];
 
     if (loading) return <div className="text-center mt-5">Caricamento in corso...</div>;
@@ -70,7 +70,7 @@ export default function Home() {
             <div className="text-center mb-4">
                 <h1 className="display-4 fw-bold">AmazBool</h1>
                 <p className="lead text-muted">
-                    Confronta e salva i migliori prodotti high-tech e trova quello più adatto per te
+                    Confronta e salva i migliori prodotti high-tech e trova quello più adatto a te
                 </p>
             </div>
 

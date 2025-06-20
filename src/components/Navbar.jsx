@@ -43,7 +43,7 @@ const Navbar = () => {
                                     "nav-link favorite-link" + (isActive ? " active" : "")
                                 }
                             >
-                                ❤️ Favorites
+                                ❤️ Preferiti
                             </NavLink>
                         </li>
                         <li className="nav-item">
@@ -53,7 +53,7 @@ const Navbar = () => {
                                     "nav-link compare-link" + (isActive ? " active" : "")
                                 }
                             >
-                                🔍 Compare
+                                🔍 Prodotti Selezionati
                             </NavLink>
                         </li>
                     </ul>
