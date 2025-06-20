@@ -25,7 +25,6 @@ export default function ProductCard({
 
             <div className="product-title">{product.title}</div>
             <div className="product-category">• {capitalizeFirstLetter(product.category)}</div>
-            <div className="product-price">{product.price}</div>
 
             <Link
                 to={`/detail/${product.id}`}
