@@ -10,6 +10,7 @@ const ImageSlider = ({ images }) => {
         autoplay: true,
         autoplaySpeed: 3500,
         arrows: true,
+        draggable: false,
     };
 
     return (
