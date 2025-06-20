@@ -46,7 +46,7 @@ function Compare() {
                                     <h5 className="card-title">{product.title}</h5>
                                     <p className="card-text"><strong>Categoria:</strong> {product.category}</p>
                                     <p className="card-text"><strong>Prezzo:</strong> €{product.price}</p>
-                                    <p className="card-text"><strong>Rating:</strong> {product.rating?.rate}</p>
+                                    <p className="card-text"><strong>Rating:</strong> {product.rating ? product.rating : 'N/A'}</p>
 
                                     <div className="mt-auto d-flex flex-column gap-2">
                                         <Link

@@ -2,6 +2,7 @@ import { useState, useMemo, useEffect, useRef } from 'react';
 import useProducts from '../hooks/useProducts';
 import { useGlobalContext } from '../context/GlobalContext';
 import ProductCard from '../components/ProductCard';
+import ImageSlider from '../components/ImageSlider';
 
 function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
@@ -9,6 +10,8 @@ function capitalizeFirstLetter(string) {
 
 export default function Home() {
     const { products, loading, error } = useProducts();
+    console.log('Products:', products);
+
     const {
         favorites,
         toggleFavorite,
@@ -53,16 +56,27 @@ export default function Home() {
         return result;
     }, [products, debouncedSearch, category, sort]);
 
+    const sliderImages = [
+        "/images/slide1.jpg",
+        "/images/slide2.jpg",
+        "/images/slide3.jpg"
+    ];
+
     if (loading) return <div className="text-center mt-5">Caricamento in corso...</div>;
     if (error) return <div className="alert alert-danger mt-4">Errore: {error}</div>;
 
     return (
         <main className="container my-5">
             {/* Hero Section */}
-            <div className="text-center mb-5">
-                <h1 className="display-4 fw-bold">🎧 Catalogo Tech</h1>
-                <p className="lead text-muted">Scopri e confronta i migliori prodotti audio e video.</p>
+            <div className="text-center mb-4">
+                <h1 className="display-4 fw-bold">AmazBool</h1>
+                <p className="lead text-muted">
+                    Confronta e salva i migliori prodotti high-tech e trova quello più adatto per te
+                </p>
             </div>
+
+            {/* Slider sotto la Hero */}
+            <ImageSlider images={sliderImages} />
 
             {/* Filters */}
             <div className="row g-3 mb-5">
@@ -104,6 +118,7 @@ export default function Home() {
                 </div>
             </div>
 
+            {/* Lista prodotti */}
             <div className="row">
                 {filteredProducts.length === 0 ? (
                     <div className="col-12 text-center mt-5">
