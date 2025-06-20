@@ -3,6 +3,7 @@ import useProducts from '../hooks/useProducts';
 import { useGlobalContext } from '../context/GlobalContext';
 import ProductCard from '../components/ProductCard';
 import ImageSlider from '../components/ImageSlider';
+import Footer from '../components/Footer';
 
 function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
@@ -65,90 +66,94 @@ export default function Home() {
     if (error) return <div className="alert alert-danger mt-4">Errore: {error}</div>;
 
     return (
-        <main className="container my-5">
-            {/* Hero Section */}
-            <div className="text-center mb-4">
-                <h1 className="display-4 fw-bold">AmazBool</h1>
-                <p className="lead text-muted">
-                    Confronta e salva i migliori prodotti high-tech e trova quello più adatto a te
-                </p>
-            </div>
-
-            {/* Slider sotto la Hero */}
-            <ImageSlider images={sliderImages} />
-
-            {/* Filters */}
-            <div className="row g-3 mb-5">
-                <div className="col-md-4">
-                    <input
-                        ref={inputRef}
-                        type="text"
-                        className="form-control shadow-sm"
-                        placeholder="🔍 Cerca per titolo..."
-                        value={searchTerm}
-                        onChange={e => setSearchTerm(e.target.value)}
-                    />
+        <>
+            <main className="container my-5">
+                {/* Hero Section */}
+                <div className="text-center mb-4">
+                    <h1 className="display-4 fw-bold">AmazBool</h1>
+                    <p className="lead text-muted">
+                        Confronta e salva i migliori prodotti high-tech e trova quello più adatto a te
+                    </p>
                 </div>
 
-                <div className="col-md-4">
-                    <select
-                        className="form-select shadow-sm"
-                        value={category}
-                        onChange={e => setCategory(e.target.value)}
-                    >
-                        <option value="">Tutte le categorie</option>
-                        <option value="cuffie">Cuffie 🎧</option>
-                        <option value="fotocamere">Fotocamere 📷</option>
-                        <option value="microfoni">Microfoni 🎤</option>
-                    </select>
-                </div>
+                {/* Slider sotto la Hero */}
+                <ImageSlider images={sliderImages} />
 
-                <div className="col-md-4">
-                    <select
-                        className="form-select shadow-sm"
-                        value={sort}
-                        onChange={e => setSort(e.target.value)}
-                    >
-                        <option value="title-asc">Titolo A-Z</option>
-                        <option value="title-desc">Titolo Z-A</option>
-                        <option value="category-asc">Categoria A-Z</option>
-                        <option value="category-desc">Categoria Z-A</option>
-                    </select>
-                </div>
-            </div>
-
-            {/* Lista prodotti */}
-            <div className="row">
-                {filteredProducts.length === 0 ? (
-                    <div className="col-12 text-center mt-5">
-                        <h4>Nessun risultato trovato.</h4>
-                        <p>Prova a modificare la ricerca o i filtri.</p>
+                {/* Filters */}
+                <div className="row g-3 mb-5">
+                    <div className="col-md-4">
+                        <input
+                            ref={inputRef}
+                            type="text"
+                            className="form-control shadow-sm"
+                            placeholder="🔍 Cerca per titolo..."
+                            value={searchTerm}
+                            onChange={e => setSearchTerm(e.target.value)}
+                        />
                     </div>
-                ) : (
-                    filteredProducts.map(product => {
-                        const isFavorite = favorites.some(p => p.id === product.id);
-                        const isCompared = compareList.some(p => p.id === product.id);
 
-                        return (
-                            <div className="col-md-4 mb-4" key={product.id}>
-                                <ProductCard
-                                    product={{
-                                        ...product,
-                                        category: capitalizeFirstLetter(product.category),
-                                    }}
-                                    isFavorite={isFavorite}
-                                    isCompared={isCompared}
-                                    onToggleFavorite={toggleFavorite}
-                                    onToggleCompare={product => {
-                                        if (isCompared) removeFromCompare(product);
-                                        else addToCompare(product);
-                                    }}
-                                />
-                            </div>
-                        );
-                    })
-                )}
-            </div>
-        </main>
+                    <div className="col-md-4">
+                        <select
+                            className="form-select shadow-sm"
+                            value={category}
+                            onChange={e => setCategory(e.target.value)}
+                        >
+                            <option value="">Tutte le categorie</option>
+                            <option value="cuffie">Cuffie 🎧</option>
+                            <option value="fotocamere">Fotocamere 📷</option>
+                            <option value="microfoni">Microfoni 🎤</option>
+                        </select>
+                    </div>
+
+                    <div className="col-md-4">
+                        <select
+                            className="form-select shadow-sm"
+                            value={sort}
+                            onChange={e => setSort(e.target.value)}
+                        >
+                            <option value="title-asc">Titolo A-Z</option>
+                            <option value="title-desc">Titolo Z-A</option>
+                            <option value="category-asc">Categoria A-Z</option>
+                            <option value="category-desc">Categoria Z-A</option>
+                        </select>
+                    </div>
+                </div>
+
+                {/* Lista prodotti */}
+                <div className="row">
+                    {filteredProducts.length === 0 ? (
+                        <div className="col-12 text-center mt-5">
+                            <h4>Nessun risultato trovato.</h4>
+                            <p>Prova a modificare la ricerca o i filtri.</p>
+                        </div>
+                    ) : (
+                        filteredProducts.map(product => {
+                            const isFavorite = favorites.some(p => p.id === product.id);
+                            const isCompared = compareList.some(p => p.id === product.id);
+
+                            return (
+                                <div className="col-md-4 mb-4" key={product.id}>
+                                    <ProductCard
+                                        product={{
+                                            ...product,
+                                            category: capitalizeFirstLetter(product.category),
+                                        }}
+                                        isFavorite={isFavorite}
+                                        isCompared={isCompared}
+                                        onToggleFavorite={toggleFavorite}
+                                        onToggleCompare={product => {
+                                            if (isCompared) removeFromCompare(product);
+                                            else addToCompare(product);
+                                        }}
+                                    />
+                                </div>
+                            );
+                        })
+                    )}
+                </div>
+            </main>
+
+            <Footer />
+        </>
     );
 }

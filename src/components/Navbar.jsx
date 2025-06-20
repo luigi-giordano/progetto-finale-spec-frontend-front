@@ -3,10 +3,16 @@ import { NavLink } from "react-router-dom";
 
 const Navbar = () => {
     return (
-        <nav className="navbar navbar-expand-lg">
+        <nav
+            className="navbar navbar-expand-lg"
+            style={{ backgroundColor: '#1b263b' }}
+        >
             <div className="container-fluid">
                 {/* Brand/logo */}
-                <NavLink className="navbar-brand" to="/">
+                <NavLink
+                    className="navbar-brand text-light fw-bold"
+                    to="/"
+                >
                     🛒 AmazBool
                 </NavLink>
 
@@ -20,7 +26,10 @@ const Navbar = () => {
                     aria-expanded="false"
                     aria-label="Toggle navigation"
                 >
-                    <span className="navbar-toggler-icon"></span>
+                    <span
+                        className="navbar-toggler-icon"
+                        style={{ filter: "invert(1)" }}
+                    ></span>
                 </button>
 
                 {/* Collegamenti navigazione */}
@@ -30,7 +39,7 @@ const Navbar = () => {
                             <NavLink
                                 to="/"
                                 className={({ isActive }) =>
-                                    "nav-link" + (isActive ? " active" : "")
+                                    "nav-link text-light" + (isActive ? " active" : "")
                                 }
                             >
                                 🏠 Home
@@ -40,7 +49,7 @@ const Navbar = () => {
                             <NavLink
                                 to="/favorites"
                                 className={({ isActive }) =>
-                                    "nav-link favorite-link" + (isActive ? " active" : "")
+                                    "nav-link favorite-link text-light" + (isActive ? " active" : "")
                                 }
                             >
                                 ❤️ Preferiti
@@ -50,7 +59,7 @@ const Navbar = () => {
                             <NavLink
                                 to="/compare"
                                 className={({ isActive }) =>
-                                    "nav-link compare-link" + (isActive ? " active" : "")
+                                    "nav-link compare-link text-light" + (isActive ? " active" : "")
                                 }
                             >
                                 🔍 Prodotti Selezionati

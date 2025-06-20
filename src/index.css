@@ -59,6 +59,27 @@
     text-decoration: none;
 }
 
+.nav-link:hover:not(.favorite-link):not(.compare-link) {
+    background-color: rgba(231, 241, 255, 0.4);
+}
+
+
+/* Hover meno invasivo per Preferiti (rosso) */
+.favorite-link:hover {
+    background-color: rgba(220, 53, 69, 0.2);
+    /* rosso trasparente */
+    color: #fff;
+    transition: background-color 0.3s ease;
+}
+
+/* Hover meno invasivo per Prodotti Selezionati (giallo) */
+.compare-link:hover {
+    background-color: rgba(255, 193, 7, 0.2);
+    /* giallo trasparente */
+    color: #212529;
+    transition: background-color 0.3s ease;
+}
+
 .nav-link.active {
     color: #ffffff !important;
     background-color: #0d6efd;
@@ -113,13 +134,23 @@
     color: #666;
 }
 
+main {
+    background-color: #e6ecff;
+    background-image: radial-gradient(circle, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+    background-size: 20px 20px;
+    min-height: 100vh;
+    padding: 2rem 0rem 2rem 0rem;
+    /* padding generale */
+    padding-top: 0.5rem;
+    /* più spazio sopra per distanziare dal navbar */
+}
+
 .image-slider {
     max-width: 400px;
     margin: 0 auto 3rem;
     border-radius: 12px;
     overflow: hidden;
 }
-
 
 /* === CARD PRODOTTO === */
 .product-card {
@@ -272,4 +303,11 @@
     color: #fff;
     transform: translateX(-3px);
     box-shadow: 0 6px 12px rgba(13, 110, 253, 0.2);
+}
+
+/* === FOOTER === */
+.footer-custom-bg {
+    background-color: #1b263b;
+    /* un grigio-blu scuro */
+    color: #eee;
 }
