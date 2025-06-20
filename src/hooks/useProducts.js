@@ -20,8 +20,19 @@ export default function useProducts(search = '', category = '') {
                 const res = await fetch(`${VITE_API_URL}/products?${params.toString()}`);
                 if (!res.ok) throw new Error('Errore nel recupero dei prodotti');
                 const data = await res.json();
+                // Arricchisci i dati del prodotto con endpoint singolo prodotto
+                const enrichedData = await Promise.all(data.map(async (product) => {
+                    const res = await fetch(`${VITE_API_URL}/products/${product.id}`);
+                    if (!res.ok) throw new Error('Errore nel recupero del prodotto');
+                    const details = await res.json();
+                    return {
+                        ...product,
+                        price: details.product.price,
+                        rating: details.product.rating
+                    };
+                }));
 
-                setProducts(data); // data = array di prodotti
+                setProducts(enrichedData); // array di prodotti arricchiti con i dettagli
             } catch (err) {
                 setError(err.message || 'Errore generico');
             } finally {
