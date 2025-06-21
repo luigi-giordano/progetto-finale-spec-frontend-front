@@ -132,7 +132,10 @@ export default function Home() {
                             const isCompared = compareList.some(p => p.id === product.id);
 
                             return (
-                                <div className="col-md-4 mb-4" key={product.id}>
+                                <div
+                                    className="col-12 col-sm-8 col-md-6 col-lg-4 mb-4 d-flex justify-content-center mx-auto"
+                                    key={product.id}
+                                >
                                     <ProductCard
                                         product={{
                                             ...product,
