@@ -1,4 +1,8 @@
-import React from 'react';
+import {
+    FaFacebookF,
+    FaInstagram,
+    FaPinterest
+} from 'react-icons/fa';
 
 const Footer = () => {
     return (
@@ -21,14 +25,20 @@ const Footer = () => {
                         <p className="mb-0">© 2025 AmazBool - Tutti i diritti riservati</p>
                     </div>
 
-                    {/* Colonna destra - Social */}
+                    {/* Colonna destra - Social con icone */}
                     <div className="col-md-4 text-end">
                         <h5>Seguici</h5>
-                        <ul className="list-unstyled">
-                            <li><a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="text-light text-decoration-none">Facebook</a></li>
-                            <li><a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="text-light text-decoration-none">Instagram</a></li>
-                            <li><a href="https://pinterest.com" target="_blank" rel="noopener noreferrer" className="text-light text-decoration-none">Pinterest</a></li>
-                        </ul>
+                        <div className="d-flex justify-content-end gap-3">
+                            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="text-light fs-4">
+                                <FaFacebookF />
+                            </a>
+                            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="text-light fs-4">
+                                <FaInstagram />
+                            </a>
+                            <a href="https://pinterest.com" target="_blank" rel="noopener noreferrer" className="text-light fs-4">
+                                <FaPinterest />
+                            </a>
+                        </div>
                     </div>
 
                 </div>
