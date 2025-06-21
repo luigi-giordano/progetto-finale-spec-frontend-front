@@ -10,10 +10,14 @@ const Navbar = () => {
             <div className="container-fluid">
                 {/* Brand/logo */}
                 <NavLink
-                    className="navbar-brand text-light fw-bold"
+                    className="navbar-brand"
                     to="/"
                 >
-                    🛒 AmazBool
+                    <img
+                        src="/img/logo.png"
+                        alt="AmazBool Logo"
+                        style={{ height: '40px', objectFit: 'contain', borderRadius: '5px' }}
+                    />
                 </NavLink>
 
                 {/* Toggler per mobile */}
