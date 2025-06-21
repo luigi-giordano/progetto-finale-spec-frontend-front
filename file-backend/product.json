@@ -1,0 +1,230 @@
+[
+    {
+        "id": 1,
+        "title": "Sony WH-1000XM4",
+        "category": "cuffie",
+        "brand": "Sony",
+        "description": "Cuffie wireless con cancellazione del rumore, alta qualità audio e comfort.",
+        "price": 350,
+        "image": "/img/Sony-WH-1000XM4.jpg",
+        "features": [
+            "Noise Cancelling",
+            "Bluetooth 5.0",
+            "30h battery life",
+            "Touch controls"
+        ],
+        "releaseYear": 2020,
+        "rating": 4.8,
+        "createdAt": "2025-05-14T15:20:33.685Z",
+        "updatedAt": "2025-05-14T15:20:33.685Z"
+    },
+    {
+        "id": 2,
+        "title": "Bose QuietComfort 35",
+        "category": "cuffie",
+        "brand": "Bose",
+        "description": "Cuffie wireless con tecnologia di cancellazione del rumore e ottimo comfort.",
+        "price": 300,
+        "image": "/img/Bose-QuietComfort-35.jpg",
+        "features": [
+            "Noise Cancelling",
+            "Bluetooth",
+            "20h battery life",
+            "Voice assistant support"
+        ],
+        "releaseYear": 2018,
+        "rating": 4.7,
+        "createdAt": "2025-05-14T15:20:33.685Z",
+        "updatedAt": "2025-05-14T15:20:33.685Z"
+    },
+    {
+        "id": 3,
+        "title": "Canon EOS R5",
+        "category": "fotocamere",
+        "brand": "Canon",
+        "description": "Fotocamera mirrorless full-frame con risoluzione 45MP e video 8K.",
+        "price": 3900,
+        "image": "/img/Canon-EOS-R5.jpg",
+        "features": [
+            "45MP",
+            "8K video",
+            "5-axis stabilization",
+            "WiFi"
+        ],
+        "releaseYear": 2020,
+        "rating": 4.9,
+        "createdAt": "2025-05-14T15:20:33.685Z",
+        "updatedAt": "2025-05-14T15:20:33.685Z"
+    },
+    {
+        "id": 4,
+        "title": "Nikon Z6",
+        "category": "fotocamere",
+        "brand": "Nikon",
+        "description": "Fotocamera mirrorless full-frame con ottima qualità video e scatti rapidi.",
+        "price": 2000,
+        "image": "/img/Nikon-Z6.jpg",
+        "features": [
+            "24.5MP",
+            "4K video",
+            "Dual EXPEED 6 processors",
+            "5-axis stabilization"
+        ],
+        "releaseYear": 2020,
+        "rating": 4.6,
+        "createdAt": "2025-05-14T15:20:33.685Z",
+        "updatedAt": "2025-05-14T15:20:33.685Z"
+    },
+    {
+        "id": 5,
+        "title": "Shure SM7B",
+        "category": "microfoni",
+        "brand": "Shure",
+        "description": "Microfono dinamico cardioide perfetto per podcasting e registrazioni vocali.",
+        "price": 400,
+        "image": "/img/Shure-SM7B.jpg",
+        "features": [
+            "Cardioid pattern",
+            "Flat frequency response",
+            "Internal air suspension",
+            "Bass roll-off"
+        ],
+        "releaseYear": 2001,
+        "rating": 4.9,
+        "createdAt": "2025-05-14T15:20:33.685Z",
+        "updatedAt": "2025-05-14T15:20:33.685Z"
+    },
+    {
+        "id": 6,
+        "title": "Rode NT1-A",
+        "category": "microfoni",
+        "brand": "Rode",
+        "description": "Microfono a condensatore con basso rumore di fondo, ideale per studi casalinghi.",
+        "price": 230,
+        "image": "/img/Rode-NT1-A.jpg",
+        "features": [
+            "Condenser",
+            "Low noise",
+            "Pop filter included",
+            "Cardioid"
+        ],
+        "releaseYear": 2011,
+        "rating": 4.7,
+        "createdAt": "2025-05-14T15:20:33.685Z",
+        "updatedAt": "2025-05-14T15:20:33.685Z"
+    },
+    {
+        "id": 7,
+        "title": "Sennheiser HD 660 S",
+        "category": "cuffie",
+        "brand": "Sennheiser",
+        "description": "Cuffie aperte ad alta fedeltà per audiofili e ascolto critico.",
+        "price": 500,
+        "image": "/img/Sennheiser-HD-660-S.jpg",
+        "features": [
+            "Open-back",
+            "High fidelity",
+            "Impedance 150Ω",
+            "Detachable cable"
+        ],
+        "releaseYear": 2017,
+        "rating": 4.8,
+        "createdAt": "2025-05-14T15:20:33.685Z",
+        "updatedAt": "2025-05-14T15:20:33.685Z"
+    },
+    {
+        "id": 8,
+        "title": "Fujifilm X-T4",
+        "category": "fotocamere",
+        "brand": "Fujifilm",
+        "description": "Fotocamera mirrorless con stabilizzazione interna e video 4K di alta qualità.",
+        "price": 1700,
+        "image": "/img/Fujifilm-X-T4.jpg",
+        "features": [
+            "26.1MP",
+            "5-axis stabilization",
+            "4K video",
+            "Weather-sealed body"
+        ],
+        "releaseYear": 2020,
+        "rating": 4.7,
+        "createdAt": "2025-05-14T15:20:33.685Z",
+        "updatedAt": "2025-05-14T15:20:33.685Z"
+    },
+    {
+        "id": 9,
+        "title": "Audio-Technica AT2020",
+        "category": "microfoni",
+        "brand": "Audio-Technica",
+        "description": "Microfono a condensatore versatile e conveniente per registrazioni vocali e strumenti.",
+        "price": 100,
+        "image": "/img/Audio-Technica-AT2020.jpg",
+        "features": [
+            "Condenser",
+            "Cardioid",
+            "Low mass diaphragm",
+            "Wide frequency response"
+        ],
+        "releaseYear": 2004,
+        "rating": 4.5,
+        "createdAt": "2025-05-14T15:20:33.685Z",
+        "updatedAt": "2025-05-14T15:20:33.685Z"
+    },
+    {
+        "id": 10,
+        "title": "Sony WF-1000XM4",
+        "category": "cuffie",
+        "brand": "Sony",
+        "description": "Auricolari wireless con cancellazione attiva del rumore e ottima autonomia.",
+        "price": 280,
+        "image": "/img/Sony-WF-1000XM4.jpg",
+        "features": [
+            "Noise Cancelling",
+            "Bluetooth 5.2",
+            "8h battery life",
+            "IPX4 waterproof"
+        ],
+        "releaseYear": 2021,
+        "rating": 4.7,
+        "createdAt": "2025-05-14T15:20:33.685Z",
+        "updatedAt": "2025-05-14T15:20:33.685Z"
+    },
+    {
+        "id": 11,
+        "title": "GoPro HERO9 Black",
+        "category": "fotocamere",
+        "brand": "GoPro",
+        "description": "Action camera con video 5K, stabilizzazione HyperSmooth e schermo frontale.",
+        "price": 450,
+        "image": "/img/GoPro-HERO9-Black.jpg",
+        "features": [
+            "5K video",
+            "HyperSmooth stabilization",
+            "Waterproof",
+            "Front display"
+        ],
+        "releaseYear": 2020,
+        "rating": 4.6,
+        "createdAt": "2025-05-14T15:20:33.685Z",
+        "updatedAt": "2025-05-14T15:20:33.685Z"
+    },
+    {
+        "id": 12,
+        "title": "Zoom H6",
+        "category": "microfoni",
+        "brand": "Zoom",
+        "description": "Registratore portatile con 6 tracce, microfoni intercambiabili e interfaccia USB.",
+        "price": 400,
+        "image": "/img/Zoom-H6.jpg",
+        "features": [
+            "6-track recorder",
+            "Interchangeable mics",
+            "USB interface",
+            "SD card support"
+        ],
+        "releaseYear": 2013,
+        "rating": 4.8,
+        "createdAt": "2025-05-14T15:20:33.685Z",
+        "updatedAt": "2025-05-14T15:20:33.685Z"
+    }
+]
