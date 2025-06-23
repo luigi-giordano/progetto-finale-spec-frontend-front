@@ -1,14 +1,17 @@
+// Importa React e il componente NavLink da react-router-dom per la navigazione
 import React from "react";
 import { NavLink } from "react-router-dom";
 
+// Componente Navbar
 const Navbar = () => {
     return (
+        // Navbar Bootstrap con sfondo personalizzato
         <nav
             className="navbar navbar-expand-lg"
             style={{ backgroundColor: '#1b263b' }}
         >
             <div className="container-fluid">
-                {/* Brand/logo */}
+                {/* Logo del brand, cliccabile, reindirizza alla home */}
                 <NavLink
                     className="navbar-brand"
                     to="/"
@@ -16,11 +19,15 @@ const Navbar = () => {
                     <img
                         src="/img/logo.png"
                         alt="AmazBool Logo"
-                        style={{ height: '40px', objectFit: 'contain', borderRadius: '5px' }}
+                        style={{
+                            height: '40px',
+                            objectFit: 'contain',
+                            borderRadius: '5px'
+                        }}
                     />
                 </NavLink>
 
-                {/* Toggler per mobile */}
+                {/* Bottone per aprire/chiudere la navbar su dispositivi mobili */}
                 <button
                     className="navbar-toggler"
                     type="button"
@@ -36,7 +43,7 @@ const Navbar = () => {
                     ></span>
                 </button>
 
-                {/* Collegamenti navigazione */}
+                {/* Collegamenti di navigazione principali */}
                 <div className="collapse navbar-collapse" id="navbarNav">
                     <ul className="navbar-nav ms-auto">
                         <li className="nav-item">
@@ -44,7 +51,7 @@ const Navbar = () => {
                                 to="/"
                                 className={({ isActive }) =>
                                     "nav-link text-light" + (isActive ? " active" : "")
-                                }
+                                } // Aggiunge la classe 'active' se la route corrisponde
                             >
                                 🏠 Home
                             </NavLink>
