@@ -1,5 +1,3 @@
-// Importa React e il componente NavLink da react-router-dom per la navigazione
-import React from "react";
 import { NavLink } from "react-router-dom";
 
 // Componente Navbar
