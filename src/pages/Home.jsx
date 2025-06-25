@@ -29,7 +29,7 @@ export default function Home() {
     // Stato locale per il campo di ricerca (input utente)
     const [searchTerm, setSearchTerm] = useState('');
 
-    // Applichiamo debounce: il valore cambia solo dopo 500ms che l'utente smette di scrivere
+    // Funzione di debounce: il valore cambia solo dopo 500ms che l'utente smette di scrivere
     const debouncedSearch = useDebounce(searchTerm, 500);
 
     // Stato locale per il filtro per categoria
@@ -72,10 +72,10 @@ export default function Home() {
     ];
 
     // Stato di caricamento
-    if (loading) return <div className="text-center mt-5">Caricamento in corso...</div>;
+    if (loading) return (<div className="text-center mt-5">Caricamento in corso...</div>);
 
     // Stato di errore
-    if (error) return <div className="alert alert-danger mt-4">Errore: {error}</div>;
+    if (error) return (<div className="alert alert-danger mt-4">Errore: {error}</div>);
 
     // Render principale della pagina
     return (
@@ -140,7 +140,7 @@ export default function Home() {
                     ) : (
                         // Mapping dei prodotti da mostrare
                         filteredProducts.map(product => {
-                            // Controllo se è nei preferiti o nella lista di confronto
+                            // Controllo se almeno un prodotto è nei preferiti o nella lista di confronto
                             const isFavorite = favorites.some(p => p.id === product.id);
                             const isCompared = compareList.some(p => p.id === product.id);
                             return (
