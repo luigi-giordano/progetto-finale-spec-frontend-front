@@ -1,11 +1,16 @@
 /* ===========================
    Reset base e font generale
 =========================== */
+
+/* Importazione font minimal moderno */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Poppins', sans-serif;
+    /* Font aggiornato da Open Sans a Poppins */
 }
 
 /* ===========================
@@ -42,6 +47,7 @@
 /* ===========================
    Link navbar
 =========================== */
+
 /* Stile base link: colore grigio scuro, font medio, padding e bordo arrotondato */
 .nav-link {
     color: #444;
@@ -129,8 +135,11 @@
 /* Titolo grande e colore scuro */
 .hero h1 {
     font-size: 2.8rem;
-    font-weight: 800;
+    font-weight: 700;
+    /* leggermente meno pesante per più eleganza */
     color: #222;
+    letter-spacing: -0.5px;
+    /* migliora la leggibilità per titoli grandi */
 }
 
 /* Paragrafo descrittivo con font medio e colore grigio */
@@ -352,7 +361,6 @@ main {
    FOOTER
    - Sfondo scuro e testo chiaro per il footer personalizzato
 =========================== */
-
 .footer-custom-bg {
     background-color: #1b263b;
     color: #eee;

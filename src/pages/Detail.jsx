@@ -70,7 +70,7 @@ export default function Detail() {
 
     // Rendering della pagina dettagliata prodotto
     return (
-        <div className="container mt-5">
+        <div className="container mt-5 product-detail-page">
             {/* Card con informazioni prodotto, layout flessibile in riga */}
             <div className="card shadow-sm p-4 mb-4 d-flex flex-row align-items-start">
                 {/* Sezione sinistra con dettagli testo */}
