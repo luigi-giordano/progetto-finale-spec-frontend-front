@@ -23,10 +23,9 @@ export default function Favorites() {
         );
     }
 
-    // Se la lista non è vuota, mostra la lista dei prodotti preferiti
+    // Renderizzazioni della lista dei prodotti preferiti
     return (
         <div className="container mt-5">
-            {/* Header con titolo e pulsante per svuotare i preferiti */}
             <div className="d-flex justify-content-between align-items-center mb-4">
                 <h2>Lista Dei Preferiti</h2>
                 {/* Pulsante rosso per svuotare tutti i preferiti */}
@@ -56,7 +55,7 @@ export default function Favorites() {
                                 <img
                                     src={imgUrl}
                                     className="card-img-top p-3"
-                                    alt={product.title} // Testo alternativo per accessibilità
+                                    alt={product.title}
                                     style={{ height: '200px', objectFit: 'contain' }} // Mantiene proporzioni immagine
                                 />
                                 {/* Corpo della card con informazioni e azioni */}
