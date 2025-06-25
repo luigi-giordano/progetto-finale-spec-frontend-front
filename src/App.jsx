@@ -1,5 +1,5 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { GlobalProvider } from './context/GlobalContext';
+import { BrowserRouter, Routes, Route } from 'react-router-dom'; // Importazione per attivare il routing (navigazione) nell'applicazione
+import { GlobalProvider } from './context/GlobalContext'; // Importo il GlobalProvider per gestire lo stato globale
 import Navbar from './components/Navbar';
 import Home from './pages/Home';
 import Detail from './pages/Detail';
