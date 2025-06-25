@@ -1,7 +1,7 @@
 // Importa il componente Slider dal pacchetto 'react-slick', una libreria per slider/caroselli
 import Slider from 'react-slick';
 
-// Componente funzionale che riceve una prop 'images', un array di URL di immagini
+// Componente che riceve una prop 'images', un array di URL di immagini
 const ImageSlider = ({ images }) => {
     // Impostazioni dello slider, passate come oggetto al componente Slider
     const settings = {

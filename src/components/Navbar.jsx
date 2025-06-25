@@ -25,19 +25,19 @@ const Navbar = () => {
                     />
                 </NavLink>
 
-                {/* Bottone per aprire/chiudere la navbar su dispositivi mobili */}
+                {/* Bottone per mostrare/nascondere la navbar su dispositivi mobili */}
                 <button
                     className="navbar-toggler"
                     type="button"
-                    data-bs-toggle="collapse"
-                    data-bs-target="#navbarNav"
-                    aria-controls="navbarNav"
-                    aria-expanded="false"
-                    aria-label="Toggle navigation"
+                    data-bs-toggle="collapse" // Attributo Bootstrap che attiva/disattiva il menu a tendina
+                    data-bs-target="#navbarNav" // Indica quale elemento verrà mostrato/nascosto (id del div che contiene i link di navigazione)
+                    aria-controls="navbarNav" // Controlla l'elemento che verrà mostrato/nascosto
+                    aria-expanded="false" // Indica se il menu è espanso o meno
+                    aria-label="Toggle navigation" // Etichetta per screen reader
                 >
                     <span
                         className="navbar-toggler-icon"
-                        style={{ filter: "invert(1)" }}
+                        style={{ filter: "invert(1)" }} // Inverte i colori dell'icona per renderla visibile su sfondo scuro
                     ></span>
                 </button>
 
@@ -48,8 +48,8 @@ const Navbar = () => {
                             <NavLink
                                 to="/"
                                 className={({ isActive }) =>
-                                    "nav-link text-light" + (isActive ? " active" : "")
-                                } // Aggiunge la classe 'active' se la route corrisponde
+                                    "nav-link text-light" + (isActive ? " active" : "") // Se isActive è true, aggiunge la classe "active" per evidenziare il link
+                                } // Accetta come valore di className una funzione che riceve isActive e restituisce la classe appropriata
                             >
                                 🏠 Home
                             </NavLink>
@@ -58,8 +58,8 @@ const Navbar = () => {
                             <NavLink
                                 to="/favorites"
                                 className={({ isActive }) =>
-                                    "nav-link favorite-link text-light" + (isActive ? " active" : "")
-                                }
+                                    "nav-link favorite-link text-light" + (isActive ? " active" : "") // Se isActive è true, aggiunge la classe "active" per evidenziare il link
+                                } // Accetta come valore di className una funzione che riceve isActive e restituisce la classe appropriata
                             >
                                 ❤️ Preferiti
                             </NavLink>
@@ -68,8 +68,8 @@ const Navbar = () => {
                             <NavLink
                                 to="/compare"
                                 className={({ isActive }) =>
-                                    "nav-link compare-link text-light" + (isActive ? " active" : "")
-                                }
+                                    "nav-link compare-link text-light" + (isActive ? " active" : "") // Se isActive è true, aggiunge la classe "active" per evidenziare il link
+                                } // Accetta come valore di className una funzione che riceve isActive e restituisce la classe appropriata
                             >
                                 🔍 Prodotti Selezionati
                             </NavLink>
