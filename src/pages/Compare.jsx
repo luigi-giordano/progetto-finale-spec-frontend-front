@@ -65,7 +65,6 @@ function Compare() {
                                         {/* Link per andare alla pagina dettaglio prodotto */}
                                         <Link
                                             to={`/detail/${product.id}`}
-                                            state={{ from: "compare" }}
                                             className="btn btn-outline-primary"
                                         >
                                             Vedi dettagli

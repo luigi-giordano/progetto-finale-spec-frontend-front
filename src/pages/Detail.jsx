@@ -77,9 +77,7 @@ export default function Detail() {
             <div className="card shadow-sm p-4 mb-4 d-flex flex-row align-items-start">
                 {/* Sezione sinistra con dettagli testo */}
                 <div style={{ flex: 1, paddingRight: '20px' }}>
-                    {/* Titolo del prodotto */}
                     <h2 className="mb-4">{product.title}</h2>
-                    {/* Categoria prodotto */}
                     <p><strong>Categoria:</strong> {capitalizeFirstLetter(product.category)}</p>
                     {/* Prezzo, mostrato solo se presente */}
                     {product.price && <p><strong>Prezzo:</strong> €{product.price}</p>}
