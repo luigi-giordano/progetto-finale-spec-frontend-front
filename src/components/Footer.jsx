@@ -12,11 +12,11 @@ const Footer = () => {
 
                     {/* Colonna sinistra - Link utili */}
                     <div className="col-12 col-md-4 mb-4 mb-md-0">
-                        <h5>Link utili 🡇</h5>
+                        <h5>Link Utili 🡇</h5>
                         <ul className="list-unstyled">
-                            <li><a href="/" className="text-light text-decoration-none">Home</a></li>
-                            <li><a href="/contatti" className="text-light text-decoration-none">Contatti</a></li>
-                            <li><a href="/faq" className="text-light text-decoration-none">FAQ</a></li>
+                            <li><a href="/" className="text-light text-decoration-none">• Home</a></li>
+                            <li><a href="/contatti" className="text-light text-decoration-none">• Contatti</a></li>
+                            <li><a href="/faq" className="text-light text-decoration-none">• FAQ</a></li>
                         </ul>
                     </div>
 
@@ -27,7 +27,7 @@ const Footer = () => {
 
                     {/* Colonna destra - Social con icone */}
                     <div className="col-12 col-md-4 mb-4 mb-md-0 d-flex flex-column align-items-center align-items-md-end">
-                        <h5>🡇 Seguici!</h5>
+                        <h5>🡇 Contatti</h5>
                         <div className="d-flex justify-content-center justify-content-md-end gap-3 mt-2">
                             <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="text-light fs-4">
                                 <FaFacebookF />
