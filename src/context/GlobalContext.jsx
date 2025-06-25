@@ -117,6 +117,9 @@ export function GlobalProvider({ children }) {
     );
 }
 
+// Hook personalizzato per utilizzare il contesto globale
+// permettendo agli altri componenti di accedere facilmente al contesto in qualsiasi componente
+// senza dover importare useContext e GlobalContext ogni volta
 export function useGlobalContext() {
     return useContext(GlobalContext);
 }
