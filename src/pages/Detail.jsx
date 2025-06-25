@@ -1,15 +1,17 @@
+import { useGlobalContext } from '../context/GlobalContext';
 import { useParams, useNavigate } from 'react-router-dom';
-// Importo i pulsanti personalizzati per i preferiti e il confronto
+import { useMemo, useCallback } from 'react';
 import FavoriteButton from '../components/FavoriteButton';
 import CompareButton from '../components/CompareButton';
-// Importo il contesto globale per accedere a stati e azioni condivise
-import { useGlobalContext } from '../context/GlobalContext';
 // Hook personalizzato per ottenere i dati del prodotto tramite ID
 import useProductsId from '../hooks/useProductsId';
 // Componente per mostrare la valutazione a stelle
 import StarRating from '../components/StarRating';
-// Hook React per ottimizzare calcoli e funzioni
-import { useMemo, useCallback } from 'react';
+
+// Funzione helper per rendere maiuscola la prima lettera di una stringa
+function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+}
 
 export default function Detail() {
     // Prendo l'id del prodotto dalla URL tramite React Router
@@ -30,22 +32,22 @@ export default function Detail() {
         removeFromCompare,
     } = useGlobalContext();
 
-    // Memorizzo il prodotto per evitare ricalcoli inutili e problemi di dipendenze
+    // Memorizzo il prodotto per evitare ricalcoli a ogni render, ricomputando solo se cambia l'id del prodotto
     const memoProduct = useMemo(() => product, [product?.id]);
 
-    // Verifico se il prodotto è presente nella lista preferiti (recomputo solo se cambia favorites o prodotto)
+    // Memorizzo e verifico se il prodotto è presente nella lista preferiti (recomputo solo se cambia favorites o prodotto)
     const isFavorite = useMemo(() => {
         return favorites.some((fav) => fav.id === memoProduct?.id);
     }, [favorites, memoProduct]);
 
-    // Verifico se il prodotto è presente nella lista confronto (recomputo solo se cambia compareList o prodotto)
+    // Memorizzo e verifico se il prodotto è presente nella lista confronto (recomputo solo se cambia compareList o prodotto)
     const isCompared = useMemo(() => {
         return compareList.some((item) => item.id === memoProduct?.id);
     }, [compareList, memoProduct]);
 
     // Funzione per alternare l'aggiunta/rimozione dai preferiti, memorizzata con useCallback per non ricrearla ad ogni render
     const toggleFavorite = useCallback(() => {
-        if (!memoProduct) return; // protezione se prodotto non esiste
+        if (!memoProduct) return; // controllo se il prodotto non esiste
         if (isFavorite) {
             removeFavorite(memoProduct);
         } else {
@@ -53,9 +55,9 @@ export default function Detail() {
         }
     }, [isFavorite, removeFavorite, addFavorite, memoProduct]);
 
-    // Funzione per alternare l'aggiunta/rimozione dalla lista confronto, anch'essa memorizzata
+    // Funzione per alternare l'aggiunta/rimozione dalla lista confronto, memorizzata con useCallback per non ricrearla ad ogni render
     const toggleCompare = useCallback(() => {
-        if (!memoProduct) return; // protezione se prodotto non esiste
+        if (!memoProduct) return; // controllo se il prodotto non esiste
         if (isCompared) {
             removeFromCompare(memoProduct);
         } else {
@@ -64,9 +66,9 @@ export default function Detail() {
     }, [isCompared, removeFromCompare, addToCompare, memoProduct]);
 
     // Gestione dei casi di caricamento, errore o prodotto non trovato
-    if (loading) return <p className="text-center mt-5">Caricamento...</p>;
-    if (error) return <p className="text-danger text-center mt-5">Errore: {error}</p>;
-    if (!product) return <p className="text-center mt-5">Nessun prodotto trovato.</p>;
+    if (loading) return (<p className="text-center mt-5">Caricamento...</p>);
+    if (error) return (<p className="text-danger text-center mt-5">Errore: {error}</p>);
+    if (!product) return (<p className="text-center mt-5">Nessun prodotto trovato.</p>);
 
     // Rendering della pagina dettagliata prodotto
     return (
@@ -78,11 +80,11 @@ export default function Detail() {
                     {/* Titolo del prodotto */}
                     <h2 className="mb-4">{product.title}</h2>
                     {/* Categoria prodotto */}
-                    <p><strong>Categoria:</strong> {product.category}</p>
+                    <p><strong>Categoria:</strong> {capitalizeFirstLetter(product.category)}</p>
                     {/* Prezzo, mostrato solo se presente */}
                     {product.price && <p><strong>Prezzo:</strong> €{product.price}</p>}
                     {/* Marca prodotto, se disponibile */}
-                    {product.brand && <p><strong>Marca:</strong> {product.brand}</p>}
+                    {product.brand && <p><strong>Marca:</strong> {capitalizeFirstLetter(product.brand)}</p>}
                     {/* Descrizione prodotto, se presente */}
                     {product.description && (
                         <p><strong>Descrizione:</strong> {product.description}</p>
@@ -94,7 +96,7 @@ export default function Detail() {
                             <h5>Caratteristiche:</h5>
                             <ul>
                                 {product.features.map((feat) => (
-                                    <li key={feat}>{feat}</li>
+                                    <li key={feat}>{capitalizeFirstLetter(feat)}</li>
                                 ))}
                             </ul>
                         </>

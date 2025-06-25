@@ -1,8 +1,8 @@
 // Import dei React Hooks e dei custom hooks/componenti
+import { useGlobalContext } from '../context/GlobalContext';
 import { useState, useMemo } from 'react';
 import useProducts from '../hooks/useProducts';
 import useDebounce from '../hooks/useDebounce';
-import { useGlobalContext } from '../context/GlobalContext';
 import ProductCard from '../components/ProductCard';
 import ImageSlider from '../components/ImageSlider';
 import Footer from '../components/Footer';
@@ -38,24 +38,24 @@ export default function Home() {
     // Stato locale per l'ordinamento (titolo/categoria, ascendente/descendente)
     const [sort, setSort] = useState('title-asc');
 
-    // Calcolo dei prodotti filtrati/mappati in base a ricerca, categoria e ordinamento
+    // Calcolo dei prodotti filtrati/mappati in base a ricerca, categoria e ordinamento usando useMemo
     const filteredProducts = useMemo(() => {
         // Copia locale dei prodotti
         let result = [...products];
 
-        // Filtro per titolo (search input)
+        // Filtro per titolo
         if (debouncedSearch.trim()) {
             result = result.filter(p =>
                 p.title.toLowerCase().includes(debouncedSearch.toLowerCase())
             );
         }
 
-        // Filtro per categoria (select)
+        // Filtro per categoria
         if (category) {
             result = result.filter(p => p.category === category);
         }
 
-        // Ordinamento
+        // Ordinamento in base alla selezione dell'utente
         if (sort === 'title-asc') result.sort((a, b) => a.title.localeCompare(b.title));
         if (sort === 'title-desc') result.sort((a, b) => b.title.localeCompare(a.title));
         if (sort === 'category-asc') result.sort((a, b) => a.category.localeCompare(b.category));

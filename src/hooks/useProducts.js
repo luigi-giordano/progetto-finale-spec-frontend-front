@@ -35,7 +35,7 @@ export default function useProducts(search = '', category = '') {
                 // Estraggo i dati JSON dalla risposta
                 const data = await res.json();
 
-                // Per ogni prodotto recuperato, faccio una seconda fetch per ottenere dettagli extra (prezzo e valutazione)
+                // Per ogni prodotto recuperato, faccio una seconda fetch in parallelo per ottenere dettagli extra (prezzo e valutazione)
                 const enrichedData = await Promise.all(
                     data.map(async (product) => {
                         const res = await fetch(`${VITE_API_URL}/products/${product.id}`);
@@ -43,7 +43,7 @@ export default function useProducts(search = '', category = '') {
                         // Controllo la risposta della fetch dettagli, lancio errore se non ok
                         if (!res.ok) throw new Error('Errore nel recupero del prodotto');
 
-                        // Estraggo i dettagli
+                        // Se la risposta è valida estraggo i dettagli
                         const details = await res.json();
 
                         // Unisco i dati base del prodotto con i dettagli aggiuntivi (price e rating)
