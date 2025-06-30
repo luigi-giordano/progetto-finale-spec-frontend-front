@@ -3,7 +3,8 @@ import { createContext, useContext, useState, useEffect } from "react";
 // Creazione del contesto globale
 export const GlobalContext = createContext();
 
-// Provider globale che avvolge l'intera applicazione
+// Provider globale che avvolge l'intera applicazione, e attraverso la prop speciale children
+// mi permette di passare i componenti figli che avranno accesso al contesto
 export function GlobalProvider({ children }) {
     // GESTIONE PREFERITI
     // Stato per i prodotti preferiti, inizializzato da localStorage
@@ -14,12 +15,12 @@ export function GlobalProvider({ children }) {
         return stored ? JSON.parse(stored) : [];
     });
 
-    // Salva automaticamente i preferiti nel localStorage (setItem) ogni volta che cambia il valore di favorites
+    // Salva automaticamente i preferiti nel localStorage (setItem) ogni volta che cambia lo stato di favorites
     useEffect(() => {
-        localStorage.setItem("favorites", JSON.stringify(favorites));
+        localStorage.setItem("favorites", JSON.stringify(favorites)); // lo trasformo in stringa
     }, [favorites]);
 
-    // Aggiunge un prodotto ai preferiti se non è già presente usando some per evitare duplicati
+    // Aggiunge un prodotto ai preferiti se non è già presente, usando some per evitare duplicati
     // e prev per accedere allo stato precedente
     function addFavorite(product) {
         setFavorites((prev) => {
@@ -35,11 +36,13 @@ export function GlobalProvider({ children }) {
     }
 
     // Rimuove un prodotto dai preferiti
+    // Utilizzo il metodo filter per creare una nuova lista senza il prodotto specificato
     function removeFavorite(product) {
         setFavorites((prev) => prev.filter((p) => p.id !== product.id));
     }
 
     // Aggiunge o rimuove un prodotto in base alla sua presenza
+    // Utilizza some per verificare se il prodotto è già nei preferiti
     function toggleFavorite(product) {
         const isAlreadyFavorite = favorites.some((p) => p.id === product.id);
         isAlreadyFavorite ? removeFavorite(product) : addFavorite(product);
@@ -64,7 +67,7 @@ export function GlobalProvider({ children }) {
 
     // Aggiunge un prodotto alla lista di confronto, massimo 4 elementi
     function addToCompare(product) {
-        // Se la lista di confronto contiene già 4 prodotti, interrompe l'aggiunta e mostra un alert
+        // Se la lista di confronto contiene già 4 prodotti, mostro un alert e interrompo l'aggiunta
         if (compareList.length >= 4) {
             alert("Puoi confrontare al massimo 4 prodotti.");
             return;
@@ -72,7 +75,7 @@ export function GlobalProvider({ children }) {
         // Aggiorna la lista di confronto
         setCompareList((prev) => {
             // Se il prodotto è già presente, restituisce la lista attuale
-            if (prev.find((p) => p.id === product.id)) return prev;
+            if (prev.some((p) => p.id === product.id)) return prev;
             // Se il prodotto non è presente, lo aggiunge a una nuova lista
             // usando lo spread operator per mantenere gli altri prodotti
             // e aggiunge il nuovo prodotto
@@ -87,10 +90,9 @@ export function GlobalProvider({ children }) {
 
     // Aggiunge o rimuove un prodotto dalla lista di confronto in base alla sua presenza
     function toggleCompare(product) {
-        if (compareList.some((p) => p.id === product.id)) {
-            return removeFromCompare(product);
-        }
-        addToCompare(product);
+        const isAlreadyInCompare = compareList.some((p) => p.id === product.id);
+        // Se il prodotto è già nella lista di confronto, lo rimuove
+        isAlreadyInCompare ? removeFromCompare(product) : addToCompare(product);
     }
 
     // Rimuove tutti i prodotti dalla lista di confronto
