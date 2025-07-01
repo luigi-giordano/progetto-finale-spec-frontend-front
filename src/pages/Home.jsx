@@ -1,8 +1,8 @@
 // Import dei React Hooks e dei custom hooks/componenti
 import { useGlobalContext } from '../context/GlobalContext';
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useCallback } from 'react';
+import debounce from '../utils/debounce';
 import useProducts from '../hooks/useProducts';
-import useDebounce from '../hooks/useDebounce';
 import ProductCard from '../components/ProductCard';
 import ImageSlider from '../components/ImageSlider';
 import Footer from '../components/Footer';
@@ -19,18 +19,21 @@ export default function Home() {
 
     // Valori ottenuti dal context globale
     const {
-        favorites,          // Lista dei prodotti preferiti
-        toggleFavorite,     // Aggiungere/rimuovere dai preferiti
-        compareList,        // Lista dei prodotti da confrontare
-        addToCompare,       // Aggiungere un prodotto al confronto
-        removeFromCompare,  // Rimuovere un prodotto dal confronto
+        favorites,
+        toggleFavorite,
+        compareList,
+        addToCompare,
+        removeFromCompare,
     } = useGlobalContext();
 
-    // Stato locale per il campo di ricerca (input utente)
+    // Stato locale per input visivo dell'utente
     const [searchTerm, setSearchTerm] = useState('');
 
-    // Funzione di debounce: il valore cambia solo dopo 500ms che l'utente smette di scrivere
-    const debouncedSearch = useDebounce(searchTerm, 500);
+    // Stato che contiene il debounce per la ricerca
+    const [debounceSearch, setDebounceSearch] = useState('');
+
+    // Funzione debounced che si aggiorna solo dopo 500ms e memorizza la funzione con useCallback
+    const debounceSetSearch = useCallback(debounce(setDebounceSearch, 500), []);
 
     // Stato locale per il filtro per categoria
     const [category, setCategory] = useState('');
@@ -40,13 +43,12 @@ export default function Home() {
 
     // Calcolo dei prodotti filtrati/mappati in base a ricerca, categoria e ordinamento usando useMemo
     const filteredProducts = useMemo(() => {
-        // Copia locale dei prodotti
         let result = [...products];
 
-        // Filtro per titolo
-        if (debouncedSearch.trim()) {
+        // Filtro per titolo con debounce
+        if (debounceSearch.trim()) {
             result = result.filter(p =>
-                p.title.toLowerCase().includes(debouncedSearch.toLowerCase())
+                p.title.toLowerCase().includes(debounceSearch.toLowerCase())
             );
         }
 
@@ -55,16 +57,16 @@ export default function Home() {
             result = result.filter(p => p.category === category);
         }
 
-        // Ordinamento in base alla selezione dell'utente
+        // Ordinamento
         if (sort === 'title-asc') result.sort((a, b) => a.title.localeCompare(b.title));
         if (sort === 'title-desc') result.sort((a, b) => b.title.localeCompare(a.title));
         if (sort === 'category-asc') result.sort((a, b) => a.category.localeCompare(b.category));
         if (sort === 'category-desc') result.sort((a, b) => b.category.localeCompare(a.category));
 
-        return result; // Restituiamo l'array filtrato e ordinato
-    }, [products, debouncedSearch, category, sort]); // useMemo si aggiorna solo se uno di questi valori cambia
+        return result;
+    }, [products, debounceSearch, category, sort]);
 
-    // Immagini per lo slider della homepage
+    // Immagini per lo slider
     const sliderImages = [
         "/img/slide1.png",
         "/img/slide2.png",
@@ -77,20 +79,22 @@ export default function Home() {
     // Stato di errore
     if (error) return (<div className="alert alert-danger mt-4">Errore: {error}</div>);
 
-    // Render principale della pagina
+    // Render principale
     return (
         <>
             <main className="container my-5">
-                {/* Hero section: titolo e descrizione */}
+                {/* Hero */}
                 <div className="text-center mb-4">
                     <h1 className="display-4 fw-bold">AmazBool</h1>
                     <p className="lead text-muted">
                         Confronta e salva i migliori prodotti high-tech e trova quello più adatto a te
                     </p>
                 </div>
-                {/* Slider immagini sotto la hero */}
+
+                {/* Slider immagini */}
                 <ImageSlider images={sliderImages} />
-                {/* Filtri: input ricerca, select categoria, select ordinamento */}
+
+                {/* Filtri */}
                 <div className="row g-3 mb-5">
                     {/* Input di ricerca */}
                     <div className="col-md-4">
@@ -99,9 +103,13 @@ export default function Home() {
                             className="form-control shadow-sm"
                             placeholder="🔍 Cerca per titolo..."
                             value={searchTerm}
-                            onChange={e => setSearchTerm(e.target.value)}
+                            onChange={e => {
+                                setSearchTerm(e.target.value);
+                                debounceSetSearch(e.target.value);
+                            }}
                         />
                     </div>
+
                     {/* Select categoria */}
                     <div className="col-md-4">
                         <select
@@ -115,6 +123,7 @@ export default function Home() {
                             <option value="microfoni">Microfoni 🎤</option>
                         </select>
                     </div>
+
                     {/* Select ordinamento */}
                     <div className="col-md-4">
                         <select
@@ -129,18 +138,16 @@ export default function Home() {
                         </select>
                     </div>
                 </div>
-                {/* Lista dei prodotti filtrati */}
+
+                {/* Lista prodotti */}
                 <div className="row">
-                    {/* Nessun risultato trovato */}
                     {filteredProducts.length === 0 ? (
                         <div className="col-12 text-center mt-5">
                             <h4>Nessun risultato trovato.</h4>
                             <p>Prova a modificare la ricerca o i filtri.</p>
                         </div>
                     ) : (
-                        // Mapping dei prodotti da mostrare
                         filteredProducts.map(product => {
-                            // Controllo se almeno un prodotto è nei preferiti o nella lista di confronto
                             const isFavorite = favorites.some(p => p.id === product.id);
                             const isCompared = compareList.some(p => p.id === product.id);
                             return (
@@ -167,7 +174,8 @@ export default function Home() {
                     )}
                 </div>
             </main>
-            {/* Footer finale */}
+
+            {/* Footer */}
             <Footer />
         </>
     );

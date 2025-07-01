@@ -49,9 +49,9 @@ export default function Detail() {
     const toggleFavorite = useCallback(() => {
         if (!memoProduct) return; // controllo se il prodotto non esiste
         if (isFavorite) {
-            removeFavorite(memoProduct);
+            removeFavorite(memoProduct); // se esiste lo rimuovo
         } else {
-            addFavorite(memoProduct);
+            addFavorite(memoProduct); // altrimenti lo aggiungo
         }
     }, [isFavorite, removeFavorite, addFavorite, memoProduct]);
 
