@@ -19,14 +19,16 @@ export default function useProducts(search = '', category = '') {
             setError(null);    // Resetto l'errore a null
 
             try {
-                // Creo i parametri query da aggiungere all'URL
+                // Creo un oggetto per i parametri query da aggiungere dinamicamente all'URL
                 const params = new URLSearchParams();
                 // Se c'è una stringa di ricerca, la aggiungo
                 if (search) params.append('search', search);
                 // Se c'è una categoria, la aggiungo
                 if (category) params.append('category', category);
 
-                // Faccio la fetch all'endpoint con i parametri nella query string
+                // Faccio la fetch all'endpoint con i parametri nella query string formattata
+                // `${VITE_API_URL}/products` è l'endpoint base
+                // `params.toString()` converte l'oggetto URLSearchParams in una stringa
                 const res = await fetch(`${VITE_API_URL}/products?${params.toString()}`);
 
                 // Controllo se la risposta è ok, altrimenti lancio un errore
@@ -37,6 +39,7 @@ export default function useProducts(search = '', category = '') {
 
                 // Per ogni prodotto recuperato, faccio una seconda fetch in parallelo per ottenere dettagli extra (prezzo e valutazione)
                 const enrichedData = await Promise.all(
+                    // Uso map per trasformare l'array di prodotti in un array di Promesse e attendo che tutte siano risolte
                     data.map(async (product) => {
                         const res = await fetch(`${VITE_API_URL}/products/${product.id}`);
 
