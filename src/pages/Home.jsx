@@ -96,7 +96,7 @@ export default function Home() {
 
                 {/* Filtri */}
                 <div className="row g-3 mb-5">
-                    {/* Input di ricerca */}
+                    {/* Input di ricerca controllato */}
                     <div className="col-md-4">
                         <input
                             type="text"
@@ -110,7 +110,7 @@ export default function Home() {
                         />
                     </div>
 
-                    {/* Select categoria */}
+                    {/* Select categoria controllata */}
                     <div className="col-md-4">
                         <select
                             className="form-select shadow-sm"
@@ -124,7 +124,7 @@ export default function Home() {
                         </select>
                     </div>
 
-                    {/* Select ordinamento */}
+                    {/* Select ordinamento controllato */}
                     <div className="col-md-4">
                         <select
                             className="form-select shadow-sm"
