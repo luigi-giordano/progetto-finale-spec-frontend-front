@@ -46,6 +46,8 @@ export default function Home() {
         let result = [...products];
 
         // Filtro per titolo con debounce
+        // Se il debounceSearch è vuoto, non applico il filtro
+        // Altrimenti filtro i prodotti che contengono il termine di ricerca nel titolo
         if (debounceSearch.trim()) {
             result = result.filter(p =>
                 p.title.toLowerCase().includes(debounceSearch.toLowerCase())
