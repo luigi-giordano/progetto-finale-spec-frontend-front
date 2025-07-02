@@ -1,5 +1,4 @@
 // Import dei React Hooks e dei custom hooks/componenti
-import { useGlobalContext } from '../context/GlobalContext';
 import { useState, useMemo, useCallback } from 'react';
 import debounce from '../utils/debounce';
 import useProducts from '../hooks/useProducts';
@@ -16,14 +15,6 @@ function capitalizeFirstLetter(string) {
 export default function Home() {
     // Dati caricati da API tramite hook personalizzato
     const { products, loading, error } = useProducts();
-
-    // Valori ottenuti dal context globale
-    const {
-        favorites,
-        toggleFavorite,
-        compareList,
-        toggleCompare,
-    } = useGlobalContext();
 
     // Stato locale per input visivo dell'utente
     const [searchTerm, setSearchTerm] = useState('');
@@ -149,8 +140,6 @@ export default function Home() {
                         </div>
                     ) : (
                         filteredProducts.map(product => {
-                            const isFavorite = favorites.some(p => p.id === product.id);
-                            const isCompared = compareList.some(p => p.id === product.id);
                             return (
                                 <div
                                     className="col-12 col-sm-8 col-md-6 col-lg-4 mb-4 d-flex justify-content-center mx-auto"
@@ -161,10 +150,6 @@ export default function Home() {
                                             ...product,
                                             category: capitalizeFirstLetter(product.category),
                                         }}
-                                        isFavorite={isFavorite}
-                                        isCompared={isCompared}
-                                        onToggleFavorite={toggleFavorite}
-                                        onToggleCompare={toggleCompare}
                                     />
                                 </div>
                             );

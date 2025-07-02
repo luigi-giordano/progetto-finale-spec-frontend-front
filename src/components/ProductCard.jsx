@@ -1,12 +1,20 @@
 import { Link } from 'react-router-dom';
-// Componente principale che rappresenta la card del prodotto e riceve le seguenti props
-export default function ProductCard({
-    product,           // Oggetto prodotto da visualizzare
-    isFavorite,        // Il prodotto è nei preferiti?
-    isCompared,        // Il prodotto è nella lista confronto?
-    onToggleFavorite,  // Funzione da chiamare al click sul cuore
-    onToggleCompare,   // Funzione da chiamare al click sulla lente
-}) {
+// Importa il contesto globale per accedere a funzioni e stati condivisi
+import { useGlobalContext } from '../context/GlobalContext';
+
+// Componente principale che rappresenta la card di un prodotto
+export default function ProductCard({ product }) {
+
+    // Valori ottenuti dal context globale
+    const {
+        favorites,
+        toggleFavorite,
+        compareList,
+        toggleCompare,
+    } = useGlobalContext();
+
+    const isFavorite = favorites.find(fav => fav.id === product.id); // Controlla se il prodotto è nei preferiti
+    const isCompared = compareList.find(comp => comp.id === product.id); // Controlla se il prodotto è nella lista di confronto
 
     // Funzione di utilità per rendere maiuscola la prima lettera di una stringa
     function capitalizeFirstLetter(str) {
@@ -37,13 +45,13 @@ export default function ProductCard({
             <div className="d-flex justify-content-between mt-3 w-100">
                 <button
                     className={`btn btn-sm ${isFavorite ? 'btn-danger' : 'btn-outline-danger'}`} // Cambia stile dinamicamente in base allo stato (preferito o no)
-                    onClick={() => onToggleFavorite(product)} // Al click esegue una funzione che riceve il prodotto e gestisce l'aggiunta/rimozione dai preferiti
+                    onClick={() => toggleFavorite(product)} // Al click esegue una funzione che riceve il prodotto e gestisce l'aggiunta/rimozione dai preferiti
                 >
                     {isFavorite ? '❤️' : '🤍'} {/* Emoji cambia a seconda dello stato */}
                 </button>
                 <button
                     className={`btn btn-sm ${isCompared ? 'btn-warning' : 'btn-outline-warning'}`} // Cambia stile dinamicamente in base allo stato (comparato o no)
-                    onClick={() => onToggleCompare(product)} // Al click esegue una funzione che riceve il prodotto e gestisce l'aggiunta/rimozione dalla lista di confronto
+                    onClick={() => toggleCompare(product)} // Al click esegue una funzione che riceve il prodotto e gestisce l'aggiunta/rimozione dalla lista di confronto
                 >
                     {isCompared ? '🚫' : '🔍'} {/* Emoji cambia a seconda dello stato */}
                 </button>
