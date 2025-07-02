@@ -51,6 +51,7 @@ export default function Favorites() {
                         // Wrapper di ogni prodotto con chiave unica (id)
                         <div key={product.id} className="col-md-6 col-lg-3 mb-4">
                             <div className="card h-100">
+
                                 {/* Immagine del prodotto con stile per adattare l'immagine */}
                                 <img
                                     src={imgUrl}
@@ -58,16 +59,19 @@ export default function Favorites() {
                                     alt={product.title}
                                     style={{ height: '200px', objectFit: 'contain' }} // Mantiene proporzioni immagine
                                 />
+
                                 {/* Corpo della card con informazioni e azioni */}
                                 <div className="card-body d-flex flex-column">
                                     <h5 className="card-title">{product.title}</h5>
                                     <p className="card-text"><strong>Categoria:</strong> {product.category}</p>
                                     <p className="card-text"><strong>Prezzo:</strong> €{product.price}</p>
+
                                     {/* Mostra il rating se presente, altrimenti 'N/A' */}
                                     <p className="card-text"><strong>Rating:</strong> {product.rating ? product.rating : 'N/A'}</p>
 
                                     {/* Area bottoni con allineamento in fondo alla card */}
                                     <div className="mt-auto d-flex flex-column gap-2">
+
                                         {/* Link ai dettagli del prodotto */}
                                         <Link
                                             to={`/detail/${product.id}`}
@@ -75,6 +79,7 @@ export default function Favorites() {
                                         >
                                             Vedi dettagli
                                         </Link>
+
                                         {/* Bottone per rimuovere il prodotto dai preferiti */}
                                         <button
                                             className="btn btn-outline-danger"
