@@ -4,11 +4,11 @@ const { VITE_API_URL } = import.meta.env;
 
 // Definisco custom hook che prende in input l'id del prodotto
 export default function useProductId(id) {
-    // Stato per memorizzare l'oggetto prodotto recuperato dall'API, inizialmente null
+    // Stato per memorizzare il prodotto ottenuto dalla fetch
     const [product, setProduct] = useState(null);
-    // Stato per indicare se la chiamata è in corso (loading), inizialmente true perché si presume che si stia caricando
+    // Stato per gestire il caricamento dei dati
     const [loading, setLoading] = useState(true);
-    // Stato per memorizzare eventuali errori nella fetch, inizialmente null perché non ci sono errori
+    // Stato per memorizzare eventuali errori nella fetch
     const [error, setError] = useState(null);
 
     // useEffect si attiva ogni volta che cambia l'id passato al hook
@@ -37,7 +37,7 @@ export default function useProductId(id) {
                 setLoading(false);
             }
         }
-        // Richiamo la funzione asincrona per iniziare la fetch
+        // Richiamo la funzione asincrona
         fetchProductId();
         // L'effetto dipende da id, quindi si riattiva ogni volta che id cambia
     }, [id]);

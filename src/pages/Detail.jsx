@@ -70,7 +70,6 @@ export default function Detail() {
     if (error) return (<p className="text-danger text-center mt-5">Errore: {error}</p>);
     if (!product) return (<p className="text-center mt-5">Nessun prodotto trovato.</p>);
 
-    // Rendering della pagina dettagliata prodotto
     return (
         <div className="container mt-5 product-detail-page">
             {/* Card con informazioni prodotto, layout flessibile in riga */}

@@ -18,11 +18,11 @@ export default function ProductCard({ product }) {
 
     // Funzione di utilità per rendere maiuscola la prima lettera di una stringa
     function capitalizeFirstLetter(str) {
-        if (!str) return ''; // Se la stringa è vuota o undefined, ritorna stringa vuota
-        return str.charAt(0).toUpperCase() + str.slice(1); // Prima lettera maiuscola + resto della stringa
+        if (!str) return '';
+        return str.charAt(0).toUpperCase() + str.slice(1); // Altrimenti restituisce la stringa con la prima lettera maiuscola
     }
 
-    // Genera il percorso dell'immagine in base al titolo, sostituendo gli spazi vuoiti con trattini
+    // Genera il percorso dell'immagine in base al titolo, sostituendo gli spazi vuoti con trattini
     const imgUrl = `/img/${product.title}.jpg`.replaceAll(' ', '-');
 
     return (
@@ -45,13 +45,13 @@ export default function ProductCard({ product }) {
             <div className="d-flex justify-content-between mt-3 w-100">
                 <button
                     className={`btn btn-sm ${isFavorite ? 'btn-danger' : 'btn-outline-danger'}`} // Cambia stile dinamicamente in base allo stato (preferito o no)
-                    onClick={() => toggleFavorite(product)} // Al click esegue una funzione che riceve il prodotto e gestisce l'aggiunta/rimozione dai preferiti
+                    onClick={() => toggleFavorite(product)} // Aggiunta/rimozione dai preferiti
                 >
                     {isFavorite ? '❤️' : '🤍'} {/* Emoji cambia a seconda dello stato */}
                 </button>
                 <button
                     className={`btn btn-sm ${isCompared ? 'btn-warning' : 'btn-outline-warning'}`} // Cambia stile dinamicamente in base allo stato (comparato o no)
-                    onClick={() => toggleCompare(product)} // Al click esegue una funzione che riceve il prodotto e gestisce l'aggiunta/rimozione dalla lista di confronto
+                    onClick={() => toggleCompare(product)} // Aggiunta/rimozione dalla lista di confronto
                 >
                     {isCompared ? '🚫' : '🔍'} {/* Emoji cambia a seconda dello stato */}
                 </button>

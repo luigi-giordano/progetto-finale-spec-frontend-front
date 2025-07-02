@@ -65,13 +65,10 @@ export default function Home() {
         "/img/slide3.png"
     ];
 
-    // Stato di caricamento
+    // Se il caricamento è in corso o c'è un errore, mostro un messaggio di stato
     if (loading) return (<div className="text-center mt-5">Caricamento in corso...</div>);
-
-    // Stato di errore
     if (error) return (<div className="alert alert-danger mt-4">Errore: {error}</div>);
 
-    // Render principale
     return (
         <>
             <main className="container my-5">

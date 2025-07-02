@@ -24,7 +24,6 @@ export function GlobalProvider({ children }) {
     // e prev per accedere allo stato precedente
     function addFavorite(product) {
         setFavorites((prev) => {
-            // Controlla se il prodotto è già presente nella lista dei preferiti
             const isInList = prev.some((p) => p.id === product.id);
             // Se il prodotto è già presente, restituisce la lista
             if (isInList) return prev;
@@ -121,9 +120,7 @@ export function GlobalProvider({ children }) {
     );
 }
 
-// Hook personalizzato per utilizzare il contesto globale
-// permettendo agli altri componenti di accedere facilmente al contesto in qualsiasi componente
-// senza dover importare useContext e GlobalContext ogni volta
+// Hook personalizzato per utilizzare il contesto globale in qualsiasi componente
 export function useGlobalContext() {
     return useContext(GlobalContext);
 }

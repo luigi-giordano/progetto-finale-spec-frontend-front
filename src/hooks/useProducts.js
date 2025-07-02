@@ -15,8 +15,8 @@ export default function useProducts(search = '', category = '') {
     useEffect(() => {
         // Funzione asincrona che si occupa di fare la chiamata all'API
         async function fetchProducts() {
-            setLoading(true);  // Setto loading a true perché sto iniziando a caricare
-            setError(null);    // Resetto l'errore a null
+            setLoading(true);
+            setError(null);
 
             try {
                 // Creo un oggetto per i parametri query da aggiungere dinamicamente all'URL
@@ -67,12 +67,12 @@ export default function useProducts(search = '', category = '') {
                 setLoading(false);
             }
         }
-
-        // Recupero i prodotti chiamando la funzione fetchProducts
         fetchProducts();
-
     }, [search, category]);  // Rilancio il fetch ogni volta che cambiano 'search' o 'category'
 
-    // Ritorno i dati e gli stati per essere usati nel componente che usa questo hook
-    return { products, loading, error };
+    return {
+        products,
+        loading,
+        error
+    };
 }

@@ -21,7 +21,6 @@ function Compare() {
         );
     }
 
-    // Renderizzazione della lista dei prodotti da confrontare
     return (
         <div className="container my-5">
             <div className="d-flex justify-content-between align-items-center mb-4">

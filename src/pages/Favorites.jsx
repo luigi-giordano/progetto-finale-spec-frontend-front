@@ -23,7 +23,6 @@ export default function Favorites() {
         );
     }
 
-    // Renderizzazioni della lista dei prodotti preferiti
     return (
         <div className="container mt-5">
             <div className="d-flex justify-content-between align-items-center mb-4">
