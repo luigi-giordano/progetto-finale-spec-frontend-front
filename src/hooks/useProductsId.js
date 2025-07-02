@@ -17,11 +17,9 @@ export default function useProductId(id) {
         async function fetchProductId() {
             // Se l'id non è valido esco subito senza fare nulla
             if (!id) return;
-
             // Inizio la fase di caricamento: imposto loading a true e resetto eventuali errori
             setLoading(true);
             setError(null);
-
             try {
                 // Faccio la chiamata fetch all'endpoint dell'API per ottenere il prodotto tramite l'id
                 const res = await fetch(`${VITE_API_URL}/products/${id}`);
@@ -39,10 +37,8 @@ export default function useProductId(id) {
                 setLoading(false);
             }
         }
-
         // Richiamo la funzione asincrona per iniziare la fetch
         fetchProductId();
-
         // L'effetto dipende da id, quindi si riattiva ogni volta che id cambia
     }, [id]);
     return { product, loading, error };

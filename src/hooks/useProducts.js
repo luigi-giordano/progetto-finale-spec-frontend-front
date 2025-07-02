@@ -44,17 +44,16 @@ export default function useProducts(search = '', category = '') {
                         if (!res.ok) throw new Error('Errore nel recupero del prodotto');
 
                         // Se la risposta è valida estraggo i dettagli
-                        const details = await res.json();
+                        const dataDetails = await res.json();
 
                         // Unisco i dati base del prodotto con i dettagli aggiuntivi (price e rating)
                         return {
                             ...product,
-                            price: details.product.price,
-                            rating: details.product.rating
+                            price: dataDetails.product.price,
+                            rating: dataDetails.product.rating
                         };
                     })
                 );
-
                 // Aggiorno lo stato con i prodotti arricchiti di dettagli
                 setProducts(enrichedData);
             } catch (err) {
