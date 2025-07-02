@@ -9,13 +9,13 @@ export function GlobalProvider({ children }) {
     // GESTIONE PREFERITI
     // Stato per i prodotti preferiti, inizializzato da localStorage
     const [favorites, setFavorites] = useState(() => {
-        // Legge i preferiti dal localStorage (getItem) all'avvio dell'applicazione
+        // "Legge" i preferiti dal localStorage (getItem) all'avvio dell'applicazione
         const stored = localStorage.getItem("favorites");
         // Se esistono preferiti salvati, li restituisce come array, altrimenti restituisce un array vuoto
         return stored ? JSON.parse(stored) : [];
     });
 
-    // Salva automaticamente i preferiti nel localStorage (setItem) ogni volta che cambia lo stato di favorites
+    // "Salva" i preferiti nel localStorage (setItem) ogni volta che cambia lo stato di favorites
     useEffect(() => {
         localStorage.setItem("favorites", JSON.stringify(favorites)); // lo trasformo in stringa
     }, [favorites]);
