@@ -22,8 +22,7 @@ export default function Home() {
         favorites,
         toggleFavorite,
         compareList,
-        addToCompare,
-        removeFromCompare,
+        toggleCompare,
     } = useGlobalContext();
 
     // Stato locale per input visivo dell'utente
@@ -165,10 +164,7 @@ export default function Home() {
                                         isFavorite={isFavorite}
                                         isCompared={isCompared}
                                         onToggleFavorite={toggleFavorite}
-                                        onToggleCompare={product => {
-                                            if (isCompared) removeFromCompare(product);
-                                            else addToCompare(product);
-                                        }}
+                                        onToggleCompare={toggleCompare}
                                     />
                                 </div>
                             );
