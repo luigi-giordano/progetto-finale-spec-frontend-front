@@ -41,7 +41,7 @@ export default function Home() {
     // Stato locale per l'ordinamento (titolo/categoria, ascendente/descendente)
     const [sort, setSort] = useState('title-asc');
 
-    // Calcolo dei prodotti filtrati/mappati in base a ricerca, categoria e ordinamento usando useMemo
+    // Calcolo dei prodotti filtrati in base a ricerca, categoria e ordinamento, memorizzo il risultato con useMemo
     const filteredProducts = useMemo(() => {
         let result = [...products];
 
