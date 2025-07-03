@@ -22,14 +22,14 @@ export default function Home() {
     // Stato che contiene il debounce per la ricerca
     const [debounceSearch, setDebounceSearch] = useState('');
 
-    // Funzione debounced che si aggiorna solo dopo 500ms e memorizza la funzione con useCallback
-    const debounceSetSearch = useCallback(debounce(setDebounceSearch, 500), []);
-
     // Stato locale per il filtro per categoria
     const [category, setCategory] = useState('');
 
     // Stato locale per l'ordinamento (titolo/categoria, ascendente/descendente)
     const [sort, setSort] = useState('title-asc');
+
+    // Funzione debounced che si aggiorna solo dopo 500ms e memorizza la funzione con useCallback
+    const debounceSetSearch = useCallback(debounce(setDebounceSearch, 500), []);
 
     // Calcolo dei prodotti filtrati in base a ricerca, categoria e ordinamento, memorizzo il risultato con useMemo
     const filteredProducts = useMemo(() => {
@@ -49,7 +49,7 @@ export default function Home() {
             result = result.filter(p => p.category === category);
         }
 
-        // Ordinamento
+        // Ordinamento dei prodotti
         if (sort === 'title-asc') result.sort((a, b) => a.title.localeCompare(b.title));
         if (sort === 'title-desc') result.sort((a, b) => b.title.localeCompare(a.title));
         if (sort === 'category-asc') result.sort((a, b) => a.category.localeCompare(b.category));

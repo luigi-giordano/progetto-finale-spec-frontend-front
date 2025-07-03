@@ -6,7 +6,7 @@
         "brand": "Sony",
         "description": "Cuffie wireless con cancellazione del rumore, alta qualità audio e comfort.",
         "price": 350,
-        "image": "/img/Sony-WH-1000XM4.jpg",
+        "image": "/img/img-1.jpg",
         "features": [
             "Noise Cancelling",
             "Bluetooth 5.0",
@@ -25,7 +25,7 @@
         "brand": "Bose",
         "description": "Cuffie wireless con tecnologia di cancellazione del rumore e ottimo comfort.",
         "price": 300,
-        "image": "/img/Bose-QuietComfort-35.jpg",
+        "image": "/img/img-2.jpg",
         "features": [
             "Noise Cancelling",
             "Bluetooth",
@@ -44,7 +44,7 @@
         "brand": "Canon",
         "description": "Fotocamera mirrorless full-frame con risoluzione 45MP e video 8K.",
         "price": 3900,
-        "image": "/img/Canon-EOS-R5.jpg",
+        "image": "/img/img-3.jpg",
         "features": [
             "45MP",
             "8K video",
@@ -63,7 +63,7 @@
         "brand": "Nikon",
         "description": "Fotocamera mirrorless full-frame con ottima qualità video e scatti rapidi.",
         "price": 2000,
-        "image": "/img/Nikon-Z6.jpg",
+        "image": "/img/img-4.jpg",
         "features": [
             "24.5MP",
             "4K video",
@@ -82,7 +82,7 @@
         "brand": "Shure",
         "description": "Microfono dinamico cardioide perfetto per podcasting e registrazioni vocali.",
         "price": 400,
-        "image": "/img/Shure-SM7B.jpg",
+        "image": "/img/img-5.jpg",
         "features": [
             "Cardioid pattern",
             "Flat frequency response",
@@ -101,7 +101,7 @@
         "brand": "Rode",
         "description": "Microfono a condensatore con basso rumore di fondo, ideale per studi casalinghi.",
         "price": 230,
-        "image": "/img/Rode-NT1-A.jpg",
+        "image": "/img/img-6.jpg",
         "features": [
             "Condenser",
             "Low noise",
@@ -120,7 +120,7 @@
         "brand": "Sennheiser",
         "description": "Cuffie aperte ad alta fedeltà per audiofili e ascolto critico.",
         "price": 500,
-        "image": "/img/Sennheiser-HD-660-S.jpg",
+        "image": "/img/img-7.jpg",
         "features": [
             "Open-back",
             "High fidelity",
@@ -139,7 +139,7 @@
         "brand": "Fujifilm",
         "description": "Fotocamera mirrorless con stabilizzazione interna e video 4K di alta qualità.",
         "price": 1700,
-        "image": "/img/Fujifilm-X-T4.jpg",
+        "image": "/img/img-8.jpg",
         "features": [
             "26.1MP",
             "5-axis stabilization",
@@ -158,7 +158,7 @@
         "brand": "Audio-Technica",
         "description": "Microfono a condensatore versatile e conveniente per registrazioni vocali e strumenti.",
         "price": 100,
-        "image": "/img/Audio-Technica-AT2020.jpg",
+        "image": "/img/img-9.jpg",
         "features": [
             "Condenser",
             "Cardioid",
@@ -177,7 +177,7 @@
         "brand": "Sony",
         "description": "Auricolari wireless con cancellazione attiva del rumore e ottima autonomia.",
         "price": 280,
-        "image": "/img/Sony-WF-1000XM4.jpg",
+        "image": "/img/img-10.jpg",
         "features": [
             "Noise Cancelling",
             "Bluetooth 5.2",
@@ -196,7 +196,7 @@
         "brand": "GoPro",
         "description": "Action camera con video 5K, stabilizzazione HyperSmooth e schermo frontale.",
         "price": 450,
-        "image": "/img/GoPro-HERO9-Black.jpg",
+        "image": "/img/img-11.jpg",
         "features": [
             "5K video",
             "HyperSmooth stabilization",
@@ -215,7 +215,7 @@
         "brand": "Zoom",
         "description": "Registratore portatile con 6 tracce, microfoni intercambiabili e interfaccia USB.",
         "price": 400,
-        "image": "/img/Zoom-H6.jpg",
+        "image": "/img/img-12.jpg",
         "features": [
             "6-track recorder",
             "Interchangeable mics",
