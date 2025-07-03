@@ -4,9 +4,9 @@ import { Link } from 'react-router-dom'; // Importa Link per la navigazione clie
 export default function Favorites() {
     // Estrae dal contesto globale le variabili e funzioni per la gestione dei preferiti
     const {
-        favorites,       // Array dei prodotti preferiti
-        toggleFavorite,  // Aggiungere/rimuovere un prodotto dai preferiti
-        clearFavorites,  // Funzione per svuotare tutti i preferiti
+        favorites,
+        toggleFavorite,
+        clearFavorites
     } = useGlobalContext();
 
     // Se la lista dei preferiti è vuota, mostra un messaggio e un link per tornare alla home

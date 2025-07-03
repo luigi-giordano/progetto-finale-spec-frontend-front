@@ -2,9 +2,12 @@
 import { useGlobalContext } from "../context/GlobalContext";
 import { Link } from "react-router-dom";
 
-function Compare() {
-    // Estraggo dal contesto globale la lista dei prodotti da confrontare, e le funzioni per rimuovere un singolo prodotto e per svuotare tutta la lista
-    const { compareList, removeFromCompare, clearCompare } = useGlobalContext();
+export default function Compare() {
+    const {
+        compareList,
+        removeFromCompare,
+        clearCompare
+    } = useGlobalContext();
 
     // Caso in cui la lista dei prodotti da confrontare è vuota
     if (compareList.length === 0) {
@@ -85,5 +88,3 @@ function Compare() {
         </div>
     );
 }
-
-export default Compare;

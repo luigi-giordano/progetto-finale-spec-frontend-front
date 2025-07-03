@@ -20,7 +20,7 @@ export default function Detail() {
         favorites,
         compareList,
         toggleFavorite,
-        toggleCompare,
+        toggleCompare
     } = useGlobalContext();
 
     const memoProduct = useMemo(() => product, [product?.id]); // UseMemo per ottimizzare il rendering del prodotto e verifico che non sia undefined
