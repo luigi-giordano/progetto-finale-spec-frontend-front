@@ -41,5 +41,10 @@ export default function useProductId(id) {
         fetchProductId();
         // L'effetto dipende da id, quindi si riattiva ogni volta che id cambia
     }, [id]);
-    return { product, loading, error };
+
+    return {
+        product,
+        loading,
+        error
+    };
 }
