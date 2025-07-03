@@ -1,13 +1,11 @@
 import { createContext, useContext, useState, useEffect } from "react";
-
-// Creazione del contesto globale
 export const GlobalContext = createContext();
 
 // Provider globale che avvolge l'intera applicazione, e attraverso la prop speciale children
-// mi permette di passare i componenti figli che avranno accesso al contesto
+// mi permette di passare i componenti figli che avranno accesso al contesto 
 export function GlobalProvider({ children }) {
+
     // GESTIONE PREFERITI
-    // Stato per i prodotti preferiti, inizializzato da localStorage
     const [favorites, setFavorites] = useState(() => {
         // "Legge" i preferiti dal localStorage (getItem) all'avvio dell'applicazione
         const stored = localStorage.getItem("favorites");
@@ -34,26 +32,25 @@ export function GlobalProvider({ children }) {
         });
     }
 
-    // Rimuove un prodotto dai preferiti
+    // Funzione di rimozione prodotto dai preferiti
     // Utilizzo il metodo filter per creare una nuova lista senza il prodotto specificato
     function removeFavorite(product) {
         setFavorites((prev) => prev.filter((p) => p.id !== product.id));
     }
 
-    // Aggiunge o rimuove un prodotto in base alla sua presenza
+    // Funzione di aggiunta o rimozione di un prodotto in base alla sua presenza
     // Utilizza some per verificare se il prodotto è già nei preferiti
     function toggleFavorite(product) {
         const isAlreadyFavorite = favorites.some((p) => p.id === product.id);
         isAlreadyFavorite ? removeFavorite(product) : addFavorite(product);
     }
 
-    // Rimuove tutti i preferiti
+    // Funzione di rimozione di tutti i preferiti
     function clearFavorites() {
         setFavorites([]);
     }
 
     // GESTIONE COMPARAZIONE
-    // Stato per la lista dei prodotti da confrontare, inizializzato da localStorage
     const [compareList, setCompareList] = useState(() => {
         const stored = localStorage.getItem("compare");
         return stored ? JSON.parse(stored) : [];
@@ -64,7 +61,7 @@ export function GlobalProvider({ children }) {
         localStorage.setItem("compare", JSON.stringify(compareList));
     }, [compareList]);
 
-    // Aggiunge un prodotto alla lista di confronto, massimo 4 elementi
+    // Funzione di aggiunta di un prodotto alla lista di confronto, massimo 4 elementi
     function addToCompare(product) {
         // Se la lista di confronto contiene già 4 prodotti, mostro un alert e interrompo l'aggiunta
         if (compareList.length >= 4) {
@@ -82,19 +79,19 @@ export function GlobalProvider({ children }) {
         });
     }
 
-    // Rimuove un prodotto dalla lista di confronto
+    // Funzione di rimozione di un prodotto dalla lista di confronto
     function removeFromCompare(product) {
         setCompareList((prev) => prev.filter((p) => p.id !== product.id));
     }
 
-    // Aggiunge o rimuove un prodotto dalla lista di confronto in base alla sua presenza
+    // Funzione di aggiunta o rimozione di un prodotto dalla lista di confronto in base alla sua presenza
     function toggleCompare(product) {
         const isAlreadyInCompare = compareList.some((p) => p.id === product.id);
         // Se il prodotto è già nella lista di confronto, lo rimuove
         isAlreadyInCompare ? removeFromCompare(product) : addToCompare(product);
     }
 
-    // Rimuove tutti i prodotti dalla lista di confronto
+    // Funzione di rimozione di tutti i prodotti dalla lista di confronto
     function clearCompare() {
         setCompareList([]);
     }
