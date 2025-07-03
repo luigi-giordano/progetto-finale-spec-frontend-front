@@ -43,8 +43,8 @@ export default function Favorites() {
             {/* Griglia dei prodotti preferiti */}
             <div className="row">
                 {favorites.map((product) => {
-                    // Crea dinamicamente l'URL dell'immagine sostituendo gli spazi con trattini
-                    const imgUrl = `/img/${product.title}.jpg`.replaceAll(' ', '-');
+                    // Creo dinamicamente l'URL dell'immagine
+                    const imgUrl = `/img/img-${product.id}.jpg`;
 
                     return (
                         // Wrapper di ogni prodotto con chiave unica (id)

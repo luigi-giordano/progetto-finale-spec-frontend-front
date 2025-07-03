@@ -40,10 +40,9 @@ export default function Compare() {
 
             {/* Container per la griglia dei prodotti */}
             <div className="row">
-                {/* Mappo la lista dei prodotti da confrontare per generare una card per ciascuno */}
                 {compareList.map((product) => {
-                    // Genero l'url dell'immagine a partire dal titolo del prodotto sostituendo gli spazi con trattini
-                    const imgUrl = `/img/${product.title}.jpg`.replaceAll(' ', '-');
+                    // Genero l'url dell'immagine
+                    const imgUrl = `/img/img-${product.id}.jpg`;
 
                     return (
                         // Card del prodotto con key univoca basata sull'id del prodotto

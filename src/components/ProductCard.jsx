@@ -22,8 +22,8 @@ export default function ProductCard({ product }) {
         return str.charAt(0).toUpperCase() + str.slice(1); // Altrimenti restituisce la stringa con la prima lettera maiuscola
     }
 
-    // Genera il percorso dell'immagine in base al titolo, sostituendo gli spazi vuoti con trattini
-    const imgUrl = `/img/${product.title}.jpg`.replaceAll(' ', '-');
+    // Genero il percorso dell'immagine in base all'id del prodotto
+    let imgUrl = `/img/img-${product.id}.jpg`;
 
     return (
         <div className="product-card">
