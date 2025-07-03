@@ -1,3 +1,5 @@
+![Screenshot della homepage](public/img/Progetto.png)
+
 PROGETTO FINALE - Comparatore di Records
 Il progetto finale del percorso con Boolean:
 Il progetto consiste nel realizzare una SPA (single page application) con React, capace di visualizzare, cercare, filtrare, confrontare e salvare come preferiti diversi record.
