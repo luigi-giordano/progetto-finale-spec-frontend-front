@@ -16,7 +16,6 @@ const ImageSlider = ({ images }) => {
         draggable: false,      // Disattiva il trascinamento con il mouse o touch
     };
 
-    // Renderizzazione del componente
     return (
         <div className="image-slider mb-5">
             {/* Inizializza lo slider con le impostazioni definite sopra */}
