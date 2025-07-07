@@ -12,7 +12,9 @@ export default function Compare() {
     // Se non ci sono prodotti nella lista di confronto, mostra un messaggio e un bottone per tornare alla home
     if (compareList.length === 0) {
         return (
-            <div className="container my-5 text-center">
+            <div className="container text-center"
+                style={{ marginTop: "100px" }}
+            >
                 <h2>Nessun prodotto da confrontare!</h2>
                 <p>Aggiungi prodotti dalla home cliccando su "Confronta".</p>
                 <Link to="/" className="btn btn-primary mt-3">
@@ -24,7 +26,9 @@ export default function Compare() {
 
     // Altrimenti, mostra il contenuto della pagina di confronto
     return (
-        <div className="container my-5">
+        <div className="container"
+            style={{ marginTop: "100px" }}
+        >
             {/* Header della sezione con il titolo e un bottone per svuotare l'elenco */}
             <div className="d-flex justify-content-between align-items-center mb-4">
                 <h2>Comparatore Prodotti</h2>

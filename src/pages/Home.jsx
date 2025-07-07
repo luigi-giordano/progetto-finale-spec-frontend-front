@@ -4,7 +4,6 @@ import debounce from '../utils/debounce';
 import useProducts from '../hooks/useProducts';
 import ProductCard from '../components/ProductCard';
 import ImageSlider from '../components/ImageSlider';
-import Footer from '../components/Footer';
 
 // Funzione helper per rendere maiuscola la prima lettera di una stringa
 function capitalizeFirstLetter(string) {

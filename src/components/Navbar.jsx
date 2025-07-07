@@ -5,8 +5,9 @@ const Navbar = () => {
     return (
         // Navbar Bootstrap con sfondo personalizzato
         <nav
-            className="navbar navbar-expand-lg"
+            className="navbar navbar-expand-lg fixed-top"
             style={{ backgroundColor: '#1b263b' }}
+
         >
             <div className="container-fluid">
                 {/* Logo del brand, cliccabile, reindirizza alla home */}

@@ -12,7 +12,9 @@ export default function Favorites() {
     // Se la lista dei preferiti è vuota, mostra un messaggio e un link per tornare alla home
     if (favorites.length === 0) {
         return (
-            <div className="container mt-5 text-center">
+            <div className="container text-center"
+                style={{ marginTop: "100px" }}
+            >
                 <h2>Nessun prodotto nei preferiti!</h2>
                 <p>Aggiungi prodotti ai preferiti per vederli qui.</p>
                 {/* Link alla home page */}
@@ -24,7 +26,9 @@ export default function Favorites() {
     }
 
     return (
-        <div className="container mt-5">
+        <div className="container"
+            style={{ marginTop: "100px" }}
+        >
             <div className="d-flex justify-content-between align-items-center mb-4">
                 <h2>Lista Dei Preferiti</h2>
                 {/* Pulsante rosso per svuotare tutti i preferiti */}

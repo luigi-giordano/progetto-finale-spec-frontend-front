@@ -5,7 +5,7 @@ import Home from './pages/Home';
 import Detail from './pages/Detail';
 import Favorites from './pages/Favorites';
 import Compare from './pages/Compare';
-import Footer from './components/Footer';
+import Footer from './pages/Footer';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import 'bootstrap-icons/font/bootstrap-icons.css';
