@@ -38,7 +38,9 @@ export default function Detail() {
     if (!product) return (<p className="text-center mt-5">Nessun prodotto trovato.</p>);
 
     return (
-        <div className="container mt-5 product-detail-page">
+        <div className="container mt-5 product-detail-page"
+            style={{ paddingTop: '100px' }}
+        >
             <div className="card shadow-sm p-4 mb-4 d-flex flex-row align-items-start">
                 {/* Contenitore flessibile per il layout */}
                 <div style={{ flex: 1, paddingRight: '20px' }}>
