@@ -10,20 +10,29 @@
     padding: 0;
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
-    /* Font aggiornato da Open Sans a Poppins */
+}
+
+/* ===========================
+   WRAPPER APP (flex column full height)
+=========================== */
+.app-container {
+    min-height: 100vh;
+    /* tutta l'altezza viewport */
+    display: flex;
+    flex-direction: column;
+    background-color: #e6ecff;
+    /* stesso azzurro di main */
 }
 
 /* ===========================
    NAVBAR
 =========================== */
 
-/* Contenitore navbar con sfondo bianco, ombra e padding */
 .navbar {
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     padding: 0.5rem 1rem;
 }
 
-/* Logo o brand della navbar - colore blu, font pesante e dimensione maggiore */
 .navbar-brand {
     font-weight: 700;
     font-size: 1.5rem;
@@ -32,13 +41,11 @@
     transition: color 0.3s ease;
 }
 
-/* Effetto hover sul brand: cambia colore e rimuove sottolineatura */
 .navbar-brand:hover {
     color: #084cd6;
     text-decoration: none;
 }
 
-/* Contenitore dei link della navbar, spazio tra i link */
 .navbar-nav {
     gap: 1rem;
 }
@@ -47,7 +54,6 @@
    Link navbar
 =========================== */
 
-/* Stile base link: colore grigio scuro, font medio, padding e bordo arrotondato */
 .nav-link {
     color: #444;
     font-weight: 600;
@@ -58,58 +64,48 @@
     transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-/* Hover generico: cambia colore testo e rimuove sottolineatura */
 .nav-link:hover {
     color: #0d6efd;
     text-decoration: none;
 }
 
-/* Hover meno invasivo per i link standard (non favorite e compare): aggiunge sfondo leggero */
 .nav-link:hover:not(.favorite-link):not(.compare-link) {
     background-color: rgba(231, 241, 255, 0.4);
 }
 
-/* Hover specifico per il link "Preferiti": sfondo rosso chiaro e testo bianco */
 .favorite-link:hover {
     background-color: rgba(220, 53, 69, 0.2);
     color: #fff;
 }
 
-/* Hover specifico per il link "Prodotti Selezionati": sfondo giallo chiaro e testo scuro */
 .compare-link:hover {
     background-color: rgba(255, 193, 7, 0.2);
     color: #212529;
 }
 
-/* Stato attivo per i link standard: testo bianco, sfondo blu e ombra */
 .nav-link.active {
     color: #fff !important;
     background-color: #0d6efd;
     box-shadow: 0 0 10px rgba(13, 110, 253, 0.5);
 }
 
-/* Stato attivo per il link "Preferiti": sfondo rosso pieno e ombra */
 .favorite-link.active {
     background-color: #dc3545 !important;
     box-shadow: 0 0 10px rgba(220, 53, 69, 0.5);
 }
 
-/* Stato attivo per il link "Prodotti Selezionati": sfondo giallo pieno, testo scuro e ombra */
 .compare-link.active {
     background-color: #ffc107 !important;
     color: #212529 !important;
     box-shadow: 0 0 10px rgba(255, 193, 7, 0.5);
 }
 
-/* Rimuove il classico bordo blu di focus di Bootstrap sui link */
 .nav-link:focus {
     box-shadow: none !important;
 }
 
 /* ===========================
-   Responsive navbar: verticalizza i link su schermi piccoli
-   - Cambia disposizione da orizzontale a verticale
-   - Aggiunge margine superiore e aumenta padding link
+   Responsive navbar
 =========================== */
 @media (max-width: 768px) {
     .navbar-nav {
@@ -124,24 +120,19 @@
 
 /* ===========================
    HERO
-   - Area principale con titolo e testo centrati e spaziatura sotto
 =========================== */
 .hero {
     text-align: center;
     margin-bottom: 3rem;
 }
 
-/* Titolo grande e colore scuro */
 .hero h1 {
     font-size: 2.8rem;
     font-weight: 700;
-    /* leggermente meno pesante per più eleganza */
     color: #222;
     letter-spacing: -0.5px;
-    /* migliora la leggibilità per titoli grandi */
 }
 
-/* Paragrafo descrittivo con font medio e colore grigio */
 .hero p {
     font-size: 1.1rem;
     color: #666;
@@ -149,21 +140,19 @@
 
 /* ===========================
    MAIN / BACKGROUND
-   - Sfondo chiaro con pattern a pois molto leggeri
-   - Altezza minima per coprire tutto lo schermo
-   - Padding superiore per non sovrapporsi alla navbar
+   - Flex-grow per occupare spazio rimanente
 =========================== */
 main {
+    flex-grow: 1;
+    /* occupa tutto lo spazio possibile */
     background-color: #e6ecff;
     background-image: radial-gradient(circle, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
     background-size: 20px 20px;
-    min-height: 100vh;
     padding-top: 0.5rem;
 }
 
 /* ===========================
    IMAGE SLIDER
-   - Contenitore slider centrato, con larghezza massima, bordi arrotondati e overflow nascosto
 =========================== */
 .image-slider {
     max-width: 400px;
@@ -174,9 +163,6 @@ main {
 
 /* ===========================
    CARD PRODOTTO
-   - Stile card prodotto con bordo chiaro, padding e ombra leggera
-   - Disposizione verticale centrata e bordo arrotondato
-   - Effetto hover con ingrandimento e ombra più marcata
 =========================== */
 .product-card {
     border: 1px solid #e0e0e0;
@@ -197,7 +183,6 @@ main {
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
 }
 
-/* Immagine prodotto: dimensioni fisse, bordo arrotondato e sfondo chiaro */
 .product-image {
     width: 100%;
     height: 200px;
@@ -207,7 +192,6 @@ main {
     background-color: #f9f9f9;
 }
 
-/* Titolo prodotto: font medio e centrato */
 .product-title {
     font-size: 1.1rem;
     margin: 8px 0 4px 0;
@@ -215,7 +199,6 @@ main {
     text-align: center;
 }
 
-/* Categoria prodotto: testo grigio chiaro, maiuscolo e con spazio tra lettere */
 .product-category {
     color: #999;
     font-size: 0.85rem;
@@ -223,7 +206,6 @@ main {
     letter-spacing: 0.5px;
 }
 
-/* Prezzo prodotto: font bold e colore scuro */
 .product-price {
     font-weight: bold;
     font-size: 1.1rem;
@@ -232,7 +214,6 @@ main {
 
 /* ===========================
    HOME CONTAINER
-   - Contenitore principale della home con padding e larghezza massima centrata
 =========================== */
 .home {
     padding: 2rem;
@@ -242,7 +223,6 @@ main {
 
 /* ===========================
    GRID E FILTRI
-   - Layout flessibile per griglia prodotti e filtri con spaziatura e centratura
 =========================== */
 .product-grid {
     display: flex;
@@ -259,7 +239,6 @@ main {
     justify-content: center;
 }
 
-/* Stile base per input e select nei filtri */
 .filters input,
 .filters select {
     padding: 0.6rem 0.9rem;
@@ -271,7 +250,6 @@ main {
     transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
-/* Stile focus per input e select: bordo e ombra blu */
 .filters input:focus,
 .filters select:focus {
     border-color: #0d6efd;
@@ -281,9 +259,6 @@ main {
 
 /* ===========================
    BOTTONE CANCELLA RICERCA
-   - Bottone posizionato sopra campo ricerca per pulire input
-   - Trasparente, senza bordo, con dimensione e colore grigio
-   - Cambia colore in rosso al passaggio del mouse o focus
 =========================== */
 .btn-clear-search {
     position: absolute;
@@ -311,8 +286,6 @@ main {
 
 /* ===========================
    VALUTAZIONE (STARS)
-   - Contenitore stelle con spaziatura e colore giallo oro
-   - Numero valutazione piccolo e centrato sotto le stelle
 =========================== */
 .star-rating {
     display: flex;
@@ -332,9 +305,6 @@ main {
 
 /* ===========================
    BOTTONE "TORNA INDIETRO"
-   - Bottone con bordo blu, sfondo trasparente e testo blu
-   - Arrotondato, con padding e ombra leggera
-   - Al passaggio del mouse cambia sfondo e testo invertendo colori
 =========================== */
 .back-button {
     font-weight: 600;
@@ -357,9 +327,10 @@ main {
 
 /* ===========================
    FOOTER
-   - Sfondo scuro e testo chiaro per il footer personalizzato
+   - Sfondo scuro, senza spazi bianchi sopra
 =========================== */
 .footer-custom-bg {
     background-color: #1b263b;
     color: #eee;
+    padding: 1rem 2rem
 }

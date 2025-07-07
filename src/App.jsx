@@ -5,6 +5,7 @@ import Home from './pages/Home';
 import Detail from './pages/Detail';
 import Favorites from './pages/Favorites';
 import Compare from './pages/Compare';
+import Footer from './components/Footer';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import 'bootstrap-icons/font/bootstrap-icons.css';
@@ -14,15 +15,18 @@ export default function App() {
   return (
     <GlobalProvider>
       <BrowserRouter>
-        <Navbar />
-        <main>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/detail/:id" element={<Detail />} />
-            <Route path="/favorites" element={<Favorites />} />
-            <Route path="/compare" element={<Compare />} />
-          </Routes>
-        </main>
+        <div className="app-container">
+          <Navbar />
+          <main>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/detail/:id" element={<Detail />} />
+              <Route path="/favorites" element={<Favorites />} />
+              <Route path="/compare" element={<Compare />} />
+            </Routes>
+          </main>
+          <Footer />
+        </div>
       </BrowserRouter>
     </GlobalProvider>
   );
