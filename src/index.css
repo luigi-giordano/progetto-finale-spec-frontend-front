@@ -257,6 +257,24 @@ main {
     box-shadow: 0 0 0 2px rgba(13, 110, 253, 0.25);
 }
 
+/* TABELLA COMPARATORE */
+
+.compare-table {
+    width: 100%;
+    border-collapse: collapse;
+    /* Rimuove spazi tra celle */
+}
+
+.compare-table th,
+.compare-table td {
+    border: none;
+    /* Nessun bordo */
+    padding: 1rem;
+    /* Spaziatura interna per leggibilità */
+    text-align: center;
+}
+
+
 /* ===========================
    BOTTONE CANCELLA RICERCA
 =========================== */

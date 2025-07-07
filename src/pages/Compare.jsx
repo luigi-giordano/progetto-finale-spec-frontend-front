@@ -34,7 +34,7 @@ export default function Compare() {
 
             {/* Tabella */}
             <div className="table-responsive d-none d-md-block shadow-sm rounded">
-                <table className="table table-striped align-middle text-center mb-0">
+                <table className="table compare-table table-striped align-middle text-center mb-0">
                     <thead className="table-primary">
                         <tr>
                             <th>Nome Prodotto</th>
