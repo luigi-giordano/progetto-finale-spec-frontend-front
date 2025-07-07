@@ -7,6 +7,8 @@ import Favorites from './pages/Favorites';
 import Compare from './pages/Compare';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import 'bootstrap-icons/font/bootstrap-icons.css';
+
 
 export default function App() {
   return (

@@ -71,7 +71,7 @@ const Navbar = () => {
                                     "nav-link compare-link text-light" + (isActive ? " active" : "") // Se isActive è true, aggiunge la classe "active" per evidenziare il link
                                 } // Accetta come valore di className una funzione che riceve isActive e restituisce la classe appropriata
                             >
-                                🔍 Prodotti Selezionati
+                                🔍 Comparatore Prodotti
                             </NavLink>
                         </li>
                     </ul>

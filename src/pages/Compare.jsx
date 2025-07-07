@@ -1,4 +1,3 @@
-// Importa il contesto globale per accedere allo stato condiviso
 import { useGlobalContext } from "../context/GlobalContext";
 import { Link } from "react-router-dom";
 
@@ -6,17 +5,14 @@ export default function Compare() {
     const {
         compareList,
         removeFromCompare,
-        clearCompare
+        clearCompare,
     } = useGlobalContext();
 
-    // Caso in cui la lista dei prodotti da confrontare è vuota
     if (compareList.length === 0) {
-        // Ritorno una sezione con messaggio informativo e link per tornare alla home
         return (
             <div className="container my-5 text-center">
                 <h2>Nessun prodotto da confrontare!</h2>
                 <p>Aggiungi prodotti dalla home cliccando su "Confronta".</p>
-                {/* Link per tornare alla home */}
                 <Link to="/" className="btn btn-primary mt-3">
                     Torna alla Home
                 </Link>
@@ -27,62 +23,95 @@ export default function Compare() {
     return (
         <div className="container my-5">
             <div className="d-flex justify-content-between align-items-center mb-4">
-                <h2>Lista Confronto Prodotti</h2>
-                {/* Bottone rosso che, se cliccato, mostra una finestra di conferma prima di svuotare tutta la lista */}
-                <button className="btn btn-danger" onClick={() => {
-                    if (window.confirm('Vuoi svuotare tutti i prodotti comparati?')) {
-                        clearCompare(); // Funzione per svuotare la lista confronto dal contesto globale
-                    }
-                }}>
+                <h2>Comparatore Prodotti</h2>
+                <button
+                    className="btn btn-danger"
+                    onClick={() => {
+                        if (
+                            window.confirm("Vuoi svuotare tutti i prodotti comparati?")
+                        ) {
+                            clearCompare();
+                        }
+                    }}
+                >
                     Svuota confronto
                 </button>
             </div>
 
-            {/* Container per la griglia dei prodotti */}
-            <div className="row">
-                {compareList.map((product) => {
-                    // Genero l'url dell'immagine
-                    const imgUrl = `/img/img-${product.id}.jpg`;
-
-                    return (
-                        // Card del prodotto con key univoca basata sull'id del prodotto
-                        <div key={product.id} className="col-md-6 col-lg-3 mb-4">
-                            <div className="card h-100">
-                                <img
-                                    src={imgUrl}
-                                    className="card-img-top p-3"
-                                    alt={product.title}
-                                    style={{ height: "200px", objectFit: "contain" }}
-                                />
-                                {/* Corpo della card con titolo, dettagli e bottoni */}
-                                <div className="card-body d-flex flex-column">
-                                    <h5 className="card-title">{product.title}</h5>
-                                    <p className="card-text"><strong>Categoria:</strong> {product.category}</p>
-                                    <p className="card-text"><strong>Prezzo:</strong> €{product.price}</p>
-                                    <p className="card-text"><strong>Rating:</strong> {product.rating ? product.rating : 'N/A'}</p>
-
-                                    {/* Container flessibile con i bottoni in basso, distanziati verticalmente */}
-                                    <div className="mt-auto d-flex flex-column gap-2">
-                                        {/* Link per andare alla pagina dettaglio prodotto */}
+            <div className="table-responsive shadow-sm rounded">
+                <table className="table table-striped align-middle text-center mb-0">
+                    <thead className="table-primary">
+                        <tr>
+                            <th scope="col">Nome Prodotto</th>
+                            {compareList.map((product) => (
+                                <th key={product.id} scope="col" className="text-truncate" style={{ maxWidth: '150px' }}>
+                                    {product.title}
+                                </th>
+                            ))}
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Immagine</strong></td>
+                            {compareList.map((product) => (
+                                <td key={product.id}>
+                                    <img
+                                        src={`/img/img-${product.id}.jpg`}
+                                        alt={product.title}
+                                        style={{
+                                            width: "120px",
+                                            height: "120px",
+                                            objectFit: "contain",
+                                            borderRadius: "8px",
+                                            boxShadow: "0 0 8px rgba(0,0,0,0.1)",
+                                        }}
+                                    />
+                                </td>
+                            ))}
+                        </tr>
+                        <tr>
+                            <td><strong>Categoria</strong></td>
+                            {compareList.map((product) => (
+                                <td key={product.id}>{product.category}</td>
+                            ))}
+                        </tr>
+                        <tr>
+                            <td><strong>Prezzo</strong></td>
+                            {compareList.map((product) => (
+                                <td key={product.id}>€{product.price}</td>
+                            ))}
+                        </tr>
+                        <tr>
+                            <td><strong>Valutazione</strong></td>
+                            {compareList.map((product) => (
+                                <td key={product.id}>{product.rating ?? "N/A"}</td>
+                            ))}
+                        </tr>
+                        <tr>
+                            <td><strong>Azioni</strong></td>
+                            {compareList.map((product) => (
+                                <td key={product.id}>
+                                    <div className="d-flex justify-content-center gap-2 flex-wrap">
                                         <Link
                                             to={`/detail/${product.id}`}
-                                            className="btn btn-outline-primary"
+                                            className="btn btn-outline-primary btn-sm"
                                         >
-                                            Vedi dettagli
+                                            <i className="bi bi-eye"></i> {/* icona occhio */}
+                                            &nbsp; Dettagli
                                         </Link>
-                                        {/* Bottone per rimuovere il prodotto dalla lista confronto */}
                                         <button
-                                            className="btn btn-outline-warning"
+                                            className="btn btn-outline-warning btn-sm"
                                             onClick={() => removeFromCompare(product)}
                                         >
-                                            Rimuovi dal confronto
+                                            <i className="bi bi-x-circle"></i> {/* icona croce */}
+                                            &nbsp; Rimuovi
                                         </button>
                                     </div>
-                                </div>
-                            </div>
-                        </div>
-                    )
-                })}
+                                </td>
+                            ))}
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
     );
