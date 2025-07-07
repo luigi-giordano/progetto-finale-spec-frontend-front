@@ -1,6 +1,15 @@
 import { Link } from "react-router-dom";
 
 export default function CompareTable({ compareList, removeFromCompare }) {
+    // Funzione wrapper per il controllo del numero minimo di prodotti
+    const handleRemove = (product) => {
+        if (compareList.length <= 2) {
+            alert("Impossibile eliminare il prodotto, minimo 2 prodotti");
+            return;
+        }
+        removeFromCompare(product);
+    };
+
     return (
         <>
             {/* Tabella versione Desktop */}
@@ -68,15 +77,12 @@ export default function CompareTable({ compareList, removeFromCompare }) {
                             {compareList.map((p) => (
                                 <td key={p.id}>
                                     <div className="d-flex justify-content-center gap-2 flex-wrap">
-                                        {/* Link per accedere alla pagina di dettaglio del prodotto */}
                                         <Link to={`/detail/${p.id}`} className="btn btn-outline-primary btn-sm">
                                             Dettagli
                                         </Link>
-
-                                        {/* Bottone per rimuovere il prodotto dalla lista di confronto */}
                                         <button
                                             className="btn btn-outline-warning btn-sm"
-                                            onClick={() => removeFromCompare(p)}
+                                            onClick={() => handleRemove(p)}
                                         >
                                             Rimuovi
                                         </button>
@@ -97,10 +103,8 @@ export default function CompareTable({ compareList, removeFromCompare }) {
                         style={{ borderRadius: "12px" }}
                     >
                         <div className="card-body text-center">
-                            {/* Titolo prodotto */}
                             <h5 className="card-title">{p.title}</h5>
 
-                            {/* Immagine prodotto */}
                             <img
                                 src={`/img/img-${p.id}.jpg`}
                                 alt={p.title}
@@ -112,23 +116,17 @@ export default function CompareTable({ compareList, removeFromCompare }) {
                                 }}
                             />
 
-                            {/* Categoria */}
                             <p><strong>Categoria:</strong> {p.category}</p>
-
-                            {/* Prezzo */}
                             <p><strong>Prezzo:</strong> €{p.price}</p>
-
-                            {/* Rating con fallback */}
                             <p><strong>Rating:</strong> {p.rating ?? "N/A"}</p>
 
-                            {/* Azioni: link dettagli e rimuovi prodotto */}
                             <div className="d-flex justify-content-center gap-2 flex-wrap mt-3">
                                 <Link to={`/detail/${p.id}`} className="btn btn-outline-primary btn-sm">
                                     Dettagli
                                 </Link>
                                 <button
                                     className="btn btn-outline-warning btn-sm"
-                                    onClick={() => removeFromCompare(p)}
+                                    onClick={() => handleRemove(p)}
                                 >
                                     Rimuovi
                                 </button>
