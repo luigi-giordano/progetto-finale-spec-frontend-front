@@ -12,8 +12,6 @@ function capitalizeFirstLetter(string) {
 
 // Componente principale della homepage
 export default function Home() {
-    // Dati caricati da API tramite hook personalizzato
-    const { products, loading, error } = useProducts();
 
     // Stato locale per input visivo dell'utente
     const [searchTerm, setSearchTerm] = useState('');
@@ -30,23 +28,12 @@ export default function Home() {
     // Funzione debounced che si aggiorna solo dopo 500ms e memorizza la funzione con useCallback
     const debounceSetSearch = useCallback(debounce(setDebounceSearch, 500), []);
 
-    // Calcolo dei prodotti filtrati in base a ricerca, categoria e ordinamento, memorizzo il risultato con useMemo
-    const filteredProducts = useMemo(() => {
+    // Dati caricati da API tramite hook personalizzato a cui passo i parametri di ricerca e categoria
+    const { products, loading, error } = useProducts(debounceSearch, category);
+
+    // Calcolo dei prodotti in base a ordinamento, memorizzo il risultato con useMemo
+    const sortedProducts = useMemo(() => {
         let result = [...products];
-
-        // Filtro per titolo con debounce
-        // Se il debounceSearch è vuoto, non applico il filtro
-        // Altrimenti filtro i prodotti che contengono il termine di ricerca nel titolo
-        if (debounceSearch.trim()) {
-            result = result.filter(p =>
-                p.title.toLowerCase().includes(debounceSearch.toLowerCase())
-            );
-        }
-
-        // Filtro per categoria
-        if (category) {
-            result = result.filter(p => p.category === category);
-        }
 
         // Ordinamento dei prodotti
         if (sort === 'title-asc') result.sort((a, b) => a.title.localeCompare(b.title));
@@ -55,7 +42,7 @@ export default function Home() {
         if (sort === 'category-desc') result.sort((a, b) => b.category.localeCompare(a.category));
 
         return result;
-    }, [products, debounceSearch, category, sort]);
+    }, [products, sort]);
 
     // Immagini per lo slider
     const sliderImages = [
@@ -129,13 +116,13 @@ export default function Home() {
 
                 {/* Lista prodotti */}
                 <div className="row">
-                    {filteredProducts.length === 0 ? (
+                    {sortedProducts.length === 0 ? (
                         <div className="col-12 text-center mt-5">
                             <h4>Nessun risultato trovato.</h4>
                             <p>Prova a modificare la ricerca o i filtri.</p>
                         </div>
                     ) : (
-                        filteredProducts.map(product => {
+                        sortedProducts.map(product => {
                             return (
                                 <div
                                     className="col-12 col-sm-8 col-md-6 col-lg-4 mb-4 d-flex justify-content-center mx-auto"
